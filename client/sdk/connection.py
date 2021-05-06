@@ -1,3 +1,5 @@
+from sdk.delve_client import DelveClient
+
 class Connection(object):
 
     def __init__(
@@ -11,8 +13,5 @@ class Connection(object):
         self.host = host
         self.port = port
         self.debug_level = debug_level
+        self.client = DelveClient(self)
         self.version = None
-
-    def set_connection_on_client():
-        if self.client:
-            self.client.conn = self
