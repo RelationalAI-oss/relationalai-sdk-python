@@ -15,10 +15,12 @@ Issues a transaction to be executed
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import openapi_client
-from openapi_client.rest import ApiException
+from openapi_client.api import default_api
+from openapi_client.model.transaction_result import TransactionResult
+from openapi_client.model.transaction import Transaction
+from openapi_client.model.infra_error import InfraError
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8010
 # See configuration.py for a list of all supported configuration parameters.
@@ -30,14 +32,32 @@ configuration = openapi_client.Configuration(
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DefaultApi(api_client)
-    transaction = openapi_client.Transaction() # Transaction | Optional description in *Markdown*
+    api_instance = default_api.DefaultApi(api_client)
+    transaction = Transaction(
+        abort=False,
+        actions=[
+            LabeledAction(
+                action=Action(),
+                name="",
+                type="LabeledAction",
+            ),
+        ],
+        dbname="",
+        debug_level=1,
+        mode="OPEN",
+        nowait_durable=False,
+        readonly=False,
+        source_dbname="source_dbname_example",
+        version=1,
+        type="Transaction",
+    ) # Transaction | Optional description in *Markdown*
 
+    # example passing only required values which don't have defaults set
     try:
         # Issues a transaction to be executed
         api_response = api_instance.transaction_post(transaction)
         pprint(api_response)
-    except ApiException as e:
+    except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->transaction_post: %s\n" % e)
 ```
 
@@ -45,7 +65,7 @@ with openapi_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction** | [**Transaction**](Transaction.md)| Optional description in *Markdown* | 
+ **transaction** | [**Transaction**](Transaction.md)| Optional description in *Markdown* |
 
 ### Return type
 

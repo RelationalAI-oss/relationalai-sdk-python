@@ -1,7 +1,8 @@
 from openapi_client.api.default_api import DefaultApi
-from openapi_client.models.action import Action
-from openapi_client.models.transaction import Transaction
-from openapi_client.models.labeled_action import LabeledAction
+from openapi_client.models import Action
+from openapi_client.models import Transaction
+from openapi_client.models import LabeledAction
+from openapi_client.models import ListEdbAction
 
 class DelveClient(DefaultApi):
 
@@ -9,16 +10,15 @@ class DelveClient(DefaultApi):
         self.conn = connection
         super().__init__()
 
-    def run_action(self, conn, name: str, action: Action, is_readonly: bool, open_mode: str):
+    def run_action(self, action: Action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
         xact = Transaction()
         xact.mode = open_mode
-        xact.dbname = conn.dbname
-        xact.readonly = is_readonly
-        xact.version = conn.version
-
-        labeled_action = LabeledAction()
-        labeled_action.name = name
-        labeled_action.action = action
+        xact.dbname = self.conn.dbname
+        xact.readonly = readonly
+        xact.debug_level = self.conn.debug_level
+        xact.version = self.conn.version
+        
+        labeled_action = LabeledAction(action = action, name = name)
         xact.actions = [labeled_action]
 
         if (self.conn.debug_level > 0):
@@ -35,7 +35,7 @@ class DelveClient(DefaultApi):
         # minimum required version of the database. Note that
         # only write transactions bump the version.
         current_version = self.conn.version if self.conn.version else 0
-        response_version = resopnse.version
+        response_version = response.version
         if (response_version > current_version):
             self.conn.version = response_version
 
@@ -80,3 +80,10 @@ class DelveClient(DefaultApi):
             raise Exception(response.problems)
 
         return not response.aborted
+
+    def list_edb(self, relname: str = None):
+        action = ListEdbAction(type="ListEdbAction")
+        action.relname = relname if relname else None
+
+        action_res = self.run_action(action=action, readonly = True)
+        return action_res.rels

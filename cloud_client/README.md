@@ -10,7 +10,7 @@ For more information, please visit [https://www.relational.ai/support](https://w
 
 ## Requirements.
 
-Python 2.7 and 3.4+
+Python >= 3.6
 
 ## Installation & Usage
 ### pip install
@@ -46,13 +46,23 @@ import openapi_client
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-from __future__ import print_function
 
 import time
 import openapi_client
-from openapi_client.rest import ApiException
 from pprint import pprint
-
+from openapi_client.api import default_api
+from openapi_client.model.create_compute_request_protocol import CreateComputeRequestProtocol
+from openapi_client.model.create_compute_response_protocol import CreateComputeResponseProtocol
+from openapi_client.model.create_user_request_protocol import CreateUserRequestProtocol
+from openapi_client.model.create_user_response_protocol import CreateUserResponseProtocol
+from openapi_client.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
+from openapi_client.model.delete_compute_response_protocol import DeleteComputeResponseProtocol
+from openapi_client.model.get_account_credits_response import GetAccountCreditsResponse
+from openapi_client.model.list_compute_events_response import ListComputeEventsResponse
+from openapi_client.model.list_computes_response_protocol import ListComputesResponseProtocol
+from openapi_client.model.list_databases_response_protocol import ListDatabasesResponseProtocol
+from openapi_client.model.list_users_response_protocol import ListUsersResponseProtocol
+from openapi_client.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -64,16 +74,15 @@ configuration = openapi_client.Configuration(
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DefaultApi(api_client)
-    period = 'period_example' # str |  (optional)
+    api_instance = default_api.DefaultApi(api_client)
+    period = "current_month" # str |  (optional)
 
     try:
         # Get account credits consumption
         api_response = api_instance.account_credits_get(period=period)
         pprint(api_response)
-    except ApiException as e:
+    except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->account_credits_get: %s\n" % e)
-    
 ```
 
 ## Documentation for API Endpoints
@@ -124,4 +133,23 @@ Class | Method | HTTP request | Description
 
 support@relational.ai
 
+
+## Notes for Large OpenAPI documents
+If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
+
+Solution 1:
+Use specific imports for apis and models like:
+- `from openapi_client.api.default_api import DefaultApi`
+- `from openapi_client.model.pet import Pet`
+
+Solution 1:
+Before importing the package, adjust the maximum recursion limit as shown below:
+```
+import sys
+sys.setrecursionlimit(1500)
+import openapi_client
+from openapi_client.apis import *
+from openapi_client.models import *
+```
 

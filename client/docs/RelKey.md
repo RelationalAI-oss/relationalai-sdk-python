@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**keys** | **list[str]** |  | [optional] 
-**name** | **str** |  | [default to '']
-**values** | **list[str]** |  | [optional] 
-**type** | **str** |  | [default to 'RelKey']
+**name** | **str** |  | defaults to ""
+**type** | **str** |  | defaults to "RelKey"
+**keys** | **[str], none_type** |  | [optional] 
+**values** | **[str], none_type** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

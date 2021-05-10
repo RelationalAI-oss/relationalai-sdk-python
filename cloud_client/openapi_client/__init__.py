@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # flake8: noqa
 
 """
@@ -13,40 +11,18 @@
 """
 
 
-from __future__ import absolute_import
-
 __version__ = "1.0.0"
-
-# import apis into sdk package
-from openapi_client.api.default_api import DefaultApi
 
 # import ApiClient
 from openapi_client.api_client import ApiClient
+
+# import Configuration
 from openapi_client.configuration import Configuration
+
+# import exceptions
 from openapi_client.exceptions import OpenApiException
+from openapi_client.exceptions import ApiAttributeError
 from openapi_client.exceptions import ApiTypeError
 from openapi_client.exceptions import ApiValueError
 from openapi_client.exceptions import ApiKeyError
-from openapi_client.exceptions import ApiAttributeError
 from openapi_client.exceptions import ApiException
-# import models into sdk package
-from openapi_client.models.compute_credits_info import ComputeCreditsInfo
-from openapi_client.models.compute_event_info import ComputeEventInfo
-from openapi_client.models.compute_info_protocol import ComputeInfoProtocol
-from openapi_client.models.create_compute_request_protocol import CreateComputeRequestProtocol
-from openapi_client.models.create_compute_response_protocol import CreateComputeResponseProtocol
-from openapi_client.models.create_user_request_protocol import CreateUserRequestProtocol
-from openapi_client.models.create_user_response_protocol import CreateUserResponseProtocol
-from openapi_client.models.database_info import DatabaseInfo
-from openapi_client.models.delete_compute_request_protocol import DeleteComputeRequestProtocol
-from openapi_client.models.delete_compute_response_protocol import DeleteComputeResponseProtocol
-from openapi_client.models.delete_compute_status import DeleteComputeStatus
-from openapi_client.models.get_account_credits_response import GetAccountCreditsResponse
-from openapi_client.models.list_compute_events_response import ListComputeEventsResponse
-from openapi_client.models.list_computes_response_protocol import ListComputesResponseProtocol
-from openapi_client.models.list_databases_response_protocol import ListDatabasesResponseProtocol
-from openapi_client.models.list_users_response_protocol import ListUsersResponseProtocol
-from openapi_client.models.storage_credits_info import StorageCreditsInfo
-from openapi_client.models.update_database_request_protocol import UpdateDatabaseRequestProtocol
-from openapi_client.models.user_info_protocol import UserInfoProtocol
-

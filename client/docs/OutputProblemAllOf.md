@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exception** | **str** |  | [default to '']
-**exception_stacktrace** | **str** |  | [optional] 
-**name** | **str** |  | [default to '']
+**exception** | **str** |  | defaults to ""
+**name** | **str** |  | defaults to ""
+**exception_stacktrace** | **str, none_type** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

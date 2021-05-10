@@ -9,14 +9,17 @@ class LocalConnection(Connection):
         scheme: str = "http",
         host: str = "127.0.0.1",
         port: int = 8010,
-        debug_level= 0
+        debug_level = 0
     ):
         super().__init__(scheme, host, port, debug_level)
         self.dbname = dbname
         self.open_mode = open_mode
 
-    def create_database(self, overwrite: bool):
+    def create_database(self, overwrite: bool = False):
         return self.client.create_database(overwrite)
 
     def clone_database(self, source_name: str, overwrite: bool = False):
         return self.client.clone_database(source_name, overwrite)
+
+    def list_edb(self, rel_name: str = None):
+        return self.client.list_edb(rel_name)

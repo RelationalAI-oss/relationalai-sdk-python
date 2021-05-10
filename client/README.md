@@ -10,7 +10,7 @@ For more information, please visit [https://www.relational.ai/support](https://w
 
 ## Requirements.
 
-Python 2.7 and 3.4+
+Python >= 3.6
 
 ## Installation & Usage
 ### pip install
@@ -46,13 +46,14 @@ import openapi_client
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-from __future__ import print_function
 
 import time
 import openapi_client
-from openapi_client.rest import ApiException
 from pprint import pprint
-
+from openapi_client.api import default_api
+from openapi_client.model.infra_error import InfraError
+from openapi_client.model.transaction import Transaction
+from openapi_client.model.transaction_result import TransactionResult
 # Defining the host is optional and defaults to http://127.0.0.1:8010
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -64,16 +65,32 @@ configuration = openapi_client.Configuration(
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DefaultApi(api_client)
-    transaction = openapi_client.Transaction() # Transaction | Optional description in *Markdown*
+    api_instance = default_api.DefaultApi(api_client)
+    transaction = Transaction(
+        abort=False,
+        actions=[
+            LabeledAction(
+                action=Action(),
+                name="",
+                type="LabeledAction",
+            ),
+        ],
+        dbname="",
+        debug_level=1,
+        mode="OPEN",
+        nowait_durable=False,
+        readonly=False,
+        source_dbname="source_dbname_example",
+        version=1,
+        type="Transaction",
+    ) # Transaction | Optional description in *Markdown*
 
     try:
         # Issues a transaction to be executed
         api_response = api_instance.transaction_post(transaction)
         pprint(api_response)
-    except ApiException as e:
+    except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->transaction_post: %s\n" % e)
-    
 ```
 
 ## Documentation for API Endpoints
@@ -195,4 +212,23 @@ Class | Method | HTTP request | Description
 
 support@relational.ai
 
+
+## Notes for Large OpenAPI documents
+If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
+
+Solution 1:
+Use specific imports for apis and models like:
+- `from openapi_client.api.default_api import DefaultApi`
+- `from openapi_client.model.pet import Pet`
+
+Solution 1:
+Before importing the package, adjust the maximum recursion limit as shown below:
+```
+import sys
+sys.setrecursionlimit(1500)
+import openapi_client
+from openapi_client.apis import *
+from openapi_client.models import *
+```
 

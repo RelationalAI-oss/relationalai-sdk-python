@@ -3,11 +3,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**arguments** | [**list[SyntaxNode]**](SyntaxNode.md) |  | [optional] 
-**error** | **bool** |  | [default to False]
-**missing** | **bool** |  | [default to False]
 **range** | [**Range**](Range.md) |  | 
-**symbol** | **str** |  | [default to '']
+**error** | **bool** |  | defaults to False
+**missing** | **bool** |  | defaults to False
+**symbol** | **str** |  | defaults to ""
+**type** | **str** |  | defaults to ""
+**arguments** | [**[SyntaxNode], none_type**](SyntaxNode.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

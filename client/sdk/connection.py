@@ -14,4 +14,4 @@ class Connection(object):
         self.port = port
         self.debug_level = debug_level
         self.client = DelveClient(self)
-        self.version = None
+        self.version = 0
