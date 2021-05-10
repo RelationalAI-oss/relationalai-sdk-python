@@ -23,3 +23,6 @@ class LocalConnection(Connection):
 
     def list_edb(self, rel_name: str = None):
         return self.client.list_edb(rel_name)
+
+    def list_source(self):
+        return self.client.list_source()
