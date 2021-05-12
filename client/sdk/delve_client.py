@@ -3,6 +3,8 @@ from openapi_client.models import Action
 from openapi_client.models import Transaction
 from openapi_client.models import LabeledAction
 from openapi_client.models import ListEdbAction
+from openapi_client.models import Source
+from openapi_client.models import QueryAction
 
 class DelveClient(DefaultApi):
 
@@ -87,3 +89,18 @@ class DelveClient(DefaultApi):
 
         action_res = self.run_action(action=action, readonly = True)
         return action_res.rels
+
+    def query(self, queryString: str, isReadOnly: bool, outputs: list, inputs: list, actionName: str):
+        source = Source(type=Source.__name__)
+        source.type = 'Source'
+        source.name = 'query'
+        source.path = ''
+        source.value = queryString
+
+        action = QueryAction(type=QueryAction.__name__, source=source)
+        action.inputs = inputs
+        action.outputs = outputs
+        action.persist = []
+
+        action_res = self.run_action(action=action, readonly=isReadOnly)
+        return action_res
