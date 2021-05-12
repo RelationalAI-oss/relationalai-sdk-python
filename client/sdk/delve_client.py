@@ -43,7 +43,6 @@ class DelveClient(DefaultApi):
 
         return None
 
-
     def create_database(self, overwrite: bool = False):
         xact = Transaction()
         xact.mode = "CREATE_OVERWRITE" if overwrite else "CREATE"
@@ -78,11 +77,18 @@ class DelveClient(DefaultApi):
 
         return not response.aborted
 
+    def cardinality(self, relname: str):
+        action = CardinalityAction(type=CardinalityAction.__name__)
+        action.relname = relname
+
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res
+
     def list_edb(self, relname: str = None):
         action = ListEdbAction(type=ListEdbAction.__name__)
         action.relname = relname if relname else None
 
-        action_res = self.run_action(action=action, readonly = True)
+        action_res = self.run_action(action=action, readonly=True)
         return action_res.rels
 
     def list_source(self):

@@ -21,6 +21,9 @@ class LocalConnection(Connection):
     def clone_database(self, source_name: str, overwrite: bool = False):
         return self.client.clone_database(source_name, overwrite)
 
+    def cardinality(self, rel_name: str = None):
+        return self.client.cardinality(rel_name)
+    
     def list_edb(self, rel_name: str = None):
         return self.client.list_edb(rel_name)
 
