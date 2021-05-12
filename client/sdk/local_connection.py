@@ -24,5 +24,8 @@ class LocalConnection(Connection):
     def list_edb(self, rel_name: str = None):
         return self.client.list_edb(rel_name)
 
+    def list_source(self):
+        return self.client.list_source()
+
     def query(self, queryString: str, isReadOnly: bool = True, outputs: list = ['out'], inputs: list = [], actionName = 'action'):
         return self.client.query(queryString, isReadOnly, outputs, inputs, actionName)

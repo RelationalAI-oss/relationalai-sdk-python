@@ -1,10 +1,5 @@
 from openapi_client.api.default_api import DefaultApi
-from openapi_client.models import Action
-from openapi_client.models import Transaction
-from openapi_client.models import LabeledAction
-from openapi_client.models import ListEdbAction
-from openapi_client.models import Source
-from openapi_client.models import QueryAction
+from openapi_client.models import *
 
 class DelveClient(DefaultApi):
 
@@ -20,7 +15,7 @@ class DelveClient(DefaultApi):
         xact.debug_level = self.conn.debug_level
         xact.version = self.conn.version
         
-        labeled_action = LabeledAction(action = action, name = name)
+        labeled_action = LabeledAction(action=action, name=name)
         xact.actions = [labeled_action]
 
         if (self.conn.debug_level > 0):
@@ -84,11 +79,17 @@ class DelveClient(DefaultApi):
         return not response.aborted
 
     def list_edb(self, relname: str = None):
-        action = ListEdbAction(type="ListEdbAction")
+        action = ListEdbAction(type=ListEdbAction.__name__)
         action.relname = relname if relname else None
 
         action_res = self.run_action(action=action, readonly = True)
         return action_res.rels
+
+    def list_source(self):
+        action = ListSourceAction(type=ListSourceAction.__name__)
+        action_res = self.run_action(action=action, readonly=True)
+
+        return action_res.get("sources")
 
     def query(self, queryString: str, isReadOnly: bool, outputs: list, inputs: list, actionName: str):
         source = Source(type=Source.__name__)
@@ -102,5 +103,5 @@ class DelveClient(DefaultApi):
         action.outputs = outputs
         action.persist = []
 
-        action_res = self.run_action(action=action, readonly=isReadOnly)
-        return action_res
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res.rels
