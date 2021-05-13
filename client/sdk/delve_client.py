@@ -43,6 +43,28 @@ class DelveClient(DefaultApi):
 
         return None
 
+    def cardinality(self, relname: str):
+        action = CardinalityAction(type=CardinalityAction.__name__)
+        action.relname = relname
+
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res
+
+    def clone_database(self, source_name: str, overwrite: bool):
+        xact = Transaction()
+        xact.mode = "CLONE_OVERWRITE" if overwrite else "CLONE"
+        xact.dbname = self.conn.dbname
+        xact.actions = []
+        xact.source_dbname = source_dbname
+        xact.readonly = False
+
+        response = self.transaction_post(xact)
+
+        if (response.problems):
+            raise Exception(response.problems)
+
+        return not response.aborted
+
     def create_database(self, overwrite: bool = False):
         xact = Transaction()
         xact.mode = "CREATE_OVERWRITE" if overwrite else "CREATE"
@@ -62,26 +84,22 @@ class DelveClient(DefaultApi):
 
         return not response.aborted
 
-    def clone_database(self, source_name: str, overwrite: bool):
-        xact = Transaction()
-        xact.mode = "CLONE_OVERWRITE" if overwrite else "CLONE"
-        xact.dbname = self.conn.dbname
-        xact.actions = []
-        xact.source_dbname = source_dbname
-        xact.readonly = False
+    def delete_source(self, source_name: str, actionName: str = 'action'):
+        action = ModifyWorkspaceAction(type=ModifyWorkspaceAction.__name__)
+        action.delete_source = [source_name]
 
-        response = self.transaction_post(xact)
+        action_res = self.run_action(action=action, readonly=False)
+        return action_res
 
-        if (response.problems):
-            raise Exception(response.problems)
+    def install_source(self, source_name: str, source_str: str, actionName:str):
+        source = Source(type=Source.__name__)
+        source.name = source_name
+        source.value = source_str
+        
+        action = InstallAction(type=InstallAction.__name__)
+        action.sources = [source]
 
-        return not response.aborted
-
-    def cardinality(self, relname: str):
-        action = CardinalityAction(type=CardinalityAction.__name__)
-        action.relname = relname
-
-        action_res = self.run_action(action=action, readonly=True)
+        action_res = self.run_action(action=action, readonly=False)
         return action_res
 
     def list_edb(self, relname: str = None):
