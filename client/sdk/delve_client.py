@@ -38,8 +38,8 @@ class DelveClient(DefaultApi):
 
         if (not response.aborted):
             for act in response.actions:
-                if name == act.name:
-                    return act.result
+                if name == act.get("name"):
+                    return act.get("result")
 
         return None
 
@@ -83,7 +83,7 @@ class DelveClient(DefaultApi):
         action.relname = relname if relname else None
 
         action_res = self.run_action(action=action, readonly = True)
-        return action_res.rels
+        return action_res.get("rels")
 
     def list_source(self):
         action = ListSourceAction(type=ListSourceAction.__name__)
@@ -91,17 +91,16 @@ class DelveClient(DefaultApi):
 
         return action_res.get("sources")
 
-    def query(self, queryString: str, isReadOnly: bool, outputs: list, inputs: list, actionName: str):
+    def query(self, src: str, action_name, readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
         source = Source(type=Source.__name__)
-        source.type = 'Source'
-        source.name = 'query'
-        source.path = ''
-        source.value = queryString
+        source.name = action_name
+        source.path = ""
+        source.value = src
 
         action = QueryAction(type=QueryAction.__name__, source=source)
         action.inputs = inputs
         action.outputs = outputs
-        action.persist = []
+        action.persist = persist
 
         action_res = self.run_action(action=action, readonly=True)
-        return action_res.rels
+        return action_res["output"]
