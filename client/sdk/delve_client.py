@@ -1,12 +1,31 @@
 from openapi_client.api.default_api import DefaultApi
+from openapi_client.api_client import ApiClient
 from openapi_client.models import *
+
+from sdk.rai_request import RAIRequest
+from sdk.rai_credentials import RAICredentials
+
+class ApiClientOverload(ApiClient):
+
+    def __init__(self, extra_headers:dict=dict(), extra_params:dict=dict()):
+        super().__init__()
+        self.extra_headers = extra_headers
+        self.extra_params = extra_params
+
+    def request(self, method, url, query_params=None, headers=None,
+                post_params=None, body=None, _preload_content=True,
+                _request_timeout=None):
+
+        RAIRequest.sign(headers, query_params, method, url, "{}", debug_level=3)
+        return super().request(method, url, query_params, headers, post_params, body, _preload_content, _request_timeout)
 
 
 class DelveClient(DefaultApi):
 
     def __init__(self, connection):
         self.conn = connection
-        super().__init__()
+        api_client = ApiClientOverload()
+        super().__init__(api_client=api_client)
 
     def run_action(self, action: Action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
         xact = Transaction()
