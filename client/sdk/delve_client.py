@@ -4,27 +4,72 @@ from openapi_client.models import *
 
 from sdk.rai_request import RAIRequest
 from sdk.rai_credentials import RAICredentials
+from sdk.cloud_connection import CloudConnection
 
 class ApiClientOverload(ApiClient):
 
-    def __init__(self, extra_headers:dict=dict(), extra_params:dict=dict()):
+    def __init__(self, sign=False, rai_config=None, extra_headers:dict=dict(), extra_params:list=[], debug_level=0):
         super().__init__()
+        self.sign = sign
+        self.config = rai_config
         self.extra_headers = extra_headers
         self.extra_params = extra_params
+        self.debug_level = debug_level
 
-    def request(self, method, url, query_params=None, headers=None,
-                post_params=None, body=None, _preload_content=True,
+    def request(self, method, url, query_params=[], headers=dict(),
+                post_params=None, body="{}", _preload_content=True,
                 _request_timeout=None):
 
-        RAIRequest.sign(headers, query_params, method, url, "{}", debug_level=3)
-        return super().request(method, url, query_params, headers, post_params, body, _preload_content, _request_timeout)
+        headers.update(self.extra_headers)
+        query_params = query_params + self.extra_params
 
+        rai_request = RAIRequest(
+            rai_config=self.config,
+            method=method,
+            url=url,
+            query_params=query_params,
+            headers=headers,
+            post_params=post_params,
+            body=body,
+            _preload_content=True,
+            _request_timeout=None,
+            service="transaction"
+        )
+
+        if self.debug_level > 0:
+            print("=> Request:")
+            print("=> Method: {}".format(method))
+            print("=> url: {}".format(url))
+            print("=> headers: {}".format(headers))
+            print("=> body: {}".format(body))
+            print("=> query_params: {}".format(query_params))
+
+        if self.sign:
+            rai_request.sign()
+
+        return super().request(
+            method=rai_request.method,
+            url=rai_request.url,
+            query_params=rai_request.query_params,
+            headers=rai_request.headers,
+            post_params=rai_request.post_params,
+            body=rai_request.body,
+            _preload_content=rai_request._preload_content,
+            _request_timeout=rai_request._request_timeout
+        )
 
 class DelveClient(DefaultApi):
 
     def __init__(self, connection):
         self.conn = connection
-        api_client = ApiClientOverload()
+        api_client = None
+
+        if isinstance(self.conn, CloudConnection):
+            extra_params = [("compute_name", self.conn.compute_name), ("dbname", self.conn.dbname)]
+            api_client = ApiClientOverload(sign=True, rai_config=self.conn.config, extra_params=extra_params, debug_level=self.conn.debug_level)
+        else:
+            api_client = ApiClientOverload(debug_level=self.conn.debug_level)
+
         super().__init__(api_client=api_client)
 
     def run_action(self, action: Action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
