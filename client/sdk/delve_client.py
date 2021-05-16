@@ -58,11 +58,32 @@ class DelveClient(DefaultApi):
 
         if (not response.aborted):
             for act in response.actions:
-                if name == act.name:
-                    return act.result
+                if name == act.get("name"):
+                    return act.get("result")
 
         return None
 
+    def cardinality(self, relname: str):
+        action = CardinalityAction(type=CardinalityAction.__name__)
+        action.relname = relname
+
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res
+
+    def clone_database(self, source_name: str, overwrite: bool):
+        xact = Transaction()
+        xact.mode = "CLONE_OVERWRITE" if overwrite else "CLONE"
+        xact.dbname = self.conn.dbname
+        xact.actions = []
+        xact.source_dbname = source_dbname
+        xact.readonly = False
+
+        response = self.transaction_post(xact)
+
+        if (response.problems):
+            raise Exception(response.problems)
+
+        return not response.aborted
 
     def create_database(self, overwrite: bool = False):
         xact = Transaction()
@@ -83,30 +104,47 @@ class DelveClient(DefaultApi):
 
         return not response.aborted
 
-    def clone_database(self, source_name: str, overwrite: bool):
-        xact = Transaction()
-        xact.mode = "CLONE_OVERWRITE" if overwrite else "CLONE"
-        xact.dbname = self.conn.dbname
-        xact.actions = []
-        xact.source_dbname = source_dbname
-        xact.readonly = False
+    def delete_source(self, source_name: str, actionName: str = 'action'):
+        action = ModifyWorkspaceAction(type=ModifyWorkspaceAction.__name__)
+        action.delete_source = [source_name]
 
-        response = self.transaction_post(xact)
+        action_res = self.run_action(action=action, readonly=False)
+        return action_res
 
-        if (response.problems):
-            raise Exception(response.problems)
+    def install_source(self, source_name: str, source_str: str, actionName:str):
+        source = Source(type=Source.__name__)
+        source.name = source_name
+        source.value = source_str
+        
+        action = InstallAction(type=InstallAction.__name__)
+        action.sources = [source]
 
-        return not response.aborted
+        action_res = self.run_action(action=action, readonly=False)
+        return action_res
 
     def list_edb(self, relname: str = None):
         action = ListEdbAction(type=ListEdbAction.__name__)
         action.relname = relname if relname else None
 
-        action_res = self.run_action(action=action, readonly=True)
-        return action_res.rels
+        action_res = self.run_action(action=action, readonly = True)
+        return action_res.get("rels")
 
     def list_source(self):
         action = ListSourceAction(type=ListSourceAction.__name__)
         action_res = self.run_action(action=action, readonly=True)
 
         return action_res.get("sources")
+
+    def query(self, src: str, action_name, readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
+        source = Source(type=Source.__name__)
+        source.name = action_name
+        source.path = ""
+        source.value = src
+
+        action = QueryAction(type=QueryAction.__name__, source=source)
+        action.inputs = inputs
+        action.outputs = outputs
+        action.persist = persist
+
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res["output"]

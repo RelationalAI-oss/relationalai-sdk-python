@@ -14,6 +14,7 @@ class RAICredentials(object):
         self.region = config[profile]["region"]
         self.host = config[profile]["host"]
         self.port = config[profile]["port"]
+        self.infra = config[profile]["infra"]
         
         private_key_filename = config[profile]["private_key_filename"]
         private_key_file_content = Path("{}/{}".format(Path(config_path).parent, private_key_filename)).read_text()

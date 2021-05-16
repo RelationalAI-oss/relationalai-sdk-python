@@ -1165,6 +1165,8 @@ def get_discriminator_class(model_class,
 
 def deserialize_model(model_data, model_class, path_to_item, check_type,
                       configuration, spec_property_naming):
+    # disable type check (issues deserializing QueryResult and similar Actions)
+    check_type = False
     """Deserializes model_data to model instance.
 
     Args:
