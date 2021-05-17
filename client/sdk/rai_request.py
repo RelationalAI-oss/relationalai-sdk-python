@@ -1,7 +1,9 @@
+import datetime
 import ed25519
 import base64
 import datetime
 import hashlib
+import json
 
 from urllib import parse
 
@@ -23,15 +25,18 @@ class RAIRequest(object):
         self.config = rai_config
         self.service = service
         self.method = method
-        self.url = url
-        self.query_params = query_params
+        # query params needs to be sorted
+        query_params.sort()
+        self.url = url + "?" + parse.urlencode(query_params)
+        self.query_params = []
+
         self.headers = headers
         self.post_params = post_params
         self.body = body
         self._preload_content = _preload_content
         self._request_timeout = _request_timeout
 
-    def sign(self, t=datetime.datetime.now(), debug_level:int=0):
+    def sign(self, t=datetime.datetime.utcnow(), debug_level:int=0):
 
         # ISO8601 date/time strings for time of request
         signature_date = t.strftime("%Y%m%dT%H%M%SZ")
@@ -41,7 +46,7 @@ class RAIRequest(object):
         scope = str("{}/{}/{}/rai01_request".format(scope_date, self.config.region, self.service))
 
         # SHA256 hash of content
-        content_hash = hashlib.sha256(str(self.body).encode("utf-8")).hexdigest()
+        content_hash = hashlib.sha256(json.dumps(self.body).encode("utf-8")).hexdigest()
 
         # Include "x-rai-date" in signed headers
         self.headers["x-rai-date"] = signature_date
@@ -53,9 +58,6 @@ class RAIRequest(object):
         h_names = [ k.lower() for k in self.headers ]
         h_names.sort()
         signed_headers = ";".join(h_names)
-
-        # Sort query string
-        self.query_params.sort()
 
         # Create hash of canonical request
         split_result = parse.urlsplit(self.url)

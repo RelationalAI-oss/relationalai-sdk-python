@@ -21,7 +21,7 @@ class ApiClientOverload(ApiClient):
                 _request_timeout=None):
 
         headers.update(self.extra_headers)
-        query_params = query_params + self.extra_params
+        query_params = query_params + [("open_mode", body.get("mode"))] + self.extra_params
 
         rai_request = RAIRequest(
             rai_config=self.config,
@@ -36,16 +36,16 @@ class ApiClientOverload(ApiClient):
             service="transaction"
         )
 
+        if self.sign:
+            rai_request.sign(debug_level=self.debug_level)
+
         if self.debug_level > 0:
             print("=> Request:")
-            print("=> Method: {}".format(method))
-            print("=> url: {}".format(url))
-            print("=> headers: {}".format(headers))
-            print("=> body: {}".format(body))
-            print("=> query_params: {}".format(query_params))
-
-        if self.sign:
-            rai_request.sign()
+            print("=> Method: {}".format(rai_request.method))
+            print("=> url: {}".format(rai_request.url))
+            print("=> headers: {}".format(rai_request.headers))
+            print("=> body: {}".format(rai_request.body))
+            print("=> query_params: {}".format(rai_request.query_params))
 
         return super().request(
             method=rai_request.method,
@@ -65,8 +65,15 @@ class DelveClient(DefaultApi):
         api_client = None
 
         if isinstance(self.conn, CloudConnection):
-            extra_params = [("compute_name", self.conn.compute_name), ("dbname", self.conn.dbname)]
-            api_client = ApiClientOverload(sign=True, rai_config=self.conn.config, extra_params=extra_params, debug_level=self.conn.debug_level)
+            extra_headers = {"Host": self.conn.config.host}
+            extra_params = [("compute_name", self.conn.compute_name), ("dbname", self.conn.dbname), ("region", self.conn.config.region)]
+            api_client = ApiClientOverload(
+                sign=True,
+                rai_config=self.conn.config,
+                extra_headers=extra_headers,
+                extra_params=extra_params,
+                debug_level=self.conn.debug_level
+            )
         else:
             api_client = ApiClientOverload(debug_level=self.conn.debug_level)
 
