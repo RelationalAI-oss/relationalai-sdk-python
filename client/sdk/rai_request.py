@@ -26,9 +26,13 @@ class RAIRequest(object):
         self.service = service
         self.method = method
         # query params needs to be sorted
-        query_params.sort()
-        self.url = url + "?" + parse.urlencode(query_params)
-        self.query_params = []
+        if query_params:
+            query_params.sort()
+            self.url = url + "?" + parse.urlencode(query_params)
+            self.query_params = []
+        else:
+            self.url = url
+            self.query_params = query_params
 
         self.headers = headers
         self.post_params = post_params

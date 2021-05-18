@@ -198,5 +198,5 @@ class DelveClient(DefaultApi):
         action.outputs = outputs
         action.persist = persist
 
-        action_res = self.run_action(action=action, readonly=True)
+        action_res = self.run_action(action=action, readonly=readonly)
         return action_res["output"]
