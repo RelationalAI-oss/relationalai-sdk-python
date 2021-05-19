@@ -13,7 +13,14 @@ class LocalConnection(Connection):
     ):
         self.dbname = dbname
         self.open_mode = open_mode
+
         super().__init__(scheme, host, port, debug_level)
+
+        # work around circular dependency
+        from sdk.delve_client import DelveClient
+        self.client = DelveClient(self)
+        self.client.api_client.configuration.host = self.base_url
+
 
     def cardinality(self, rel_name: str = None):
         return self.client.cardinality(rel_name)

@@ -17,7 +17,7 @@ class RAIRequest(object):
         query_params=[],
         headers=dict(),
         post_params=None,
-        body="{}",
+        body={},
         _preload_content=True,
         _request_timeout=None,
         service:str="transaction"
@@ -36,7 +36,7 @@ class RAIRequest(object):
 
         self.headers = headers
         self.post_params = post_params
-        self.body = body
+        self.body = body if body else ""
         self._preload_content = _preload_content
         self._request_timeout = _request_timeout
 
@@ -50,7 +50,8 @@ class RAIRequest(object):
         scope = str("{}/{}/{}/rai01_request".format(scope_date, self.config.region, self.service))
 
         # SHA256 hash of content
-        content_hash = hashlib.sha256(json.dumps(self.body).encode("utf-8")).hexdigest()
+        content = json.dumps(self.body) if isinstance(self.body, dict) else self.body
+        content_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()
 
         # Include "x-rai-date" in signed headers
         self.headers["x-rai-date"] = signature_date

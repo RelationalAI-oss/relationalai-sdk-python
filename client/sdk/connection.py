@@ -12,9 +12,4 @@ class Connection(object):
         self.port = port
         self.base_url = "{}://{}:{}".format(scheme, host, port)
         self.debug_level = debug_level
-        # work around circular dependency
-        from sdk.delve_client import DelveClient
-
-        self.client = DelveClient(self)
-        self.client.api_client.configuration.host = self.base_url
         self.version = 0

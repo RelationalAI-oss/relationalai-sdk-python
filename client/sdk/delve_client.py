@@ -17,7 +17,7 @@ class ApiClientOverload(ApiClient):
         self.debug_level = debug_level
 
     def request(self, method, url, query_params=[], headers=dict(),
-                post_params=None, body="{}", _preload_content=True,
+                post_params=None, body={}, _preload_content=True,
                 _request_timeout=None):
 
         headers.update(self.extra_headers)
@@ -79,7 +79,7 @@ class DelveClient(DefaultApi):
 
         super().__init__(api_client=api_client)
 
-    def run_action(self, action: Action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
+    def run_action(self, action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
         xact = Transaction()
         xact.mode = open_mode
         xact.dbname = self.conn.dbname

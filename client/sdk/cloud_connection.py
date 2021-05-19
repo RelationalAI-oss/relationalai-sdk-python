@@ -15,4 +15,5 @@ class CloudConnection(LocalConnection):
         self.compute_name = compute_name
         self.config = config
         self.verify_ssl = verify_ssl
+
         super().__init__(dbname, open_mode, scheme, config.host, config.port, debug_level)
