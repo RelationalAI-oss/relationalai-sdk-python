@@ -11,10 +11,9 @@ class LocalConnection(Connection):
         port: int = 8010,
         debug_level = 0
     ):
+        super().__init__(scheme, host, port, debug_level)
         self.dbname = dbname
         self.open_mode = open_mode
-
-        super().__init__(scheme, host, port, debug_level)
 
         # work around circular dependency
         from sdk.delve_client import DelveClient
