@@ -10,13 +10,12 @@ class ManagementConnection(Connection):
         self,
         verify_ssl:bool=True,
         scheme:str="https",
-        config:RAIConfig=RAIConfig(),
+        config:RAIConfig=None,
         debug_level:int=0
     ):
-        super().__init__(scheme=scheme, host=config.host, port=config.port, debug_level=debug_level)
-
+        self.config = config if config else RAIConfig().parse_config()
+        super().__init__(scheme=scheme, host=self.config.host, port=self.config.port, debug_level=debug_level)
         self.verify_ssl = verify_ssl
-        self.config = config
         # work around circular dependency
         from cloud_sdk import DelveCloudClient
 
