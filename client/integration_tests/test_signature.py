@@ -5,7 +5,7 @@ import datetime
 
 class TestSignature(unittest.TestCase):
 
-    def testAbstractProblem(self):
+    def testSignature(self):
         t = datetime.datetime(2020, 5, 4, 10, 36, 0)
         method = "GET"
         body = "{}"
