@@ -30,11 +30,11 @@ class LocalConnection(Connection):
     def create_database(self, overwrite: bool = False):
         return self.client.create_database(overwrite)
 
-    def delete_source(self, source_name: str, actionName: str = 'action'):
-        return self.client.delete_source(source_name, actionName)
+    def delete_source(self, source_name: str):
+        return self.client.delete_source(source_name)
     
-    def install_source(self, source_name: str, source_str: str, actionName:str = 'action'):
-        return self.client.install_source(source_name, source_str, actionName)
+    def install_source(self, src_name:str="", src_str:str="", src_path:str=""):
+        return self.client.install_source(src_name=src_name, src_str=src_str, src_path=src_path)
     
     def list_edb(self, rel_name: str = None):
         return self.client.list_edb(rel_name)
@@ -42,5 +42,5 @@ class LocalConnection(Connection):
     def list_source(self):
         return self.client.list_source()
 
-    def query(self, src: str, action_name: str = "query", readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
+    def query(self, src: str = "", action_name: str = "query", readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
         return self.client.query(src, action_name, readonly, inputs, outputs, persist)

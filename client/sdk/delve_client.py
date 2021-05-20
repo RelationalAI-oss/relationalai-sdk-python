@@ -6,6 +6,8 @@ from sdk.rai_request import RAIRequest
 from sdk.rai_credentials import RAICredentials
 from sdk.cloud_connection import CloudConnection
 
+import os
+
 class ApiClientOverload(ApiClient):
 
     def __init__(self, sign=False, rai_config=None, extra_headers:dict=dict(), extra_params:list=[], debug_level=0):
@@ -78,6 +80,14 @@ class DelveClient(DefaultApi):
             api_client = ApiClientOverload(debug_level=self.conn.debug_level)
 
         super().__init__(api_client=api_client)
+
+    def __read_file_from_path(self, src):
+        if src.path:
+            if not src.name:
+                src.name = os.path.basename(src.path)
+            if (not src.value) and (os.path.isfile(src.path)):
+                with open(src.path) as f:
+                    src.value = f.read()
 
     def run_action(self, action, readonly: bool, name: str = "single", open_mode: str = "OPEN"):
         xact = Transaction()
@@ -156,18 +166,21 @@ class DelveClient(DefaultApi):
 
         return not response.aborted
 
-    def delete_source(self, source_name: str, actionName: str = 'action'):
+    def delete_source(self, source_name: str):
         action = ModifyWorkspaceAction(type=ModifyWorkspaceAction.__name__)
         action.delete_source = [source_name]
 
         action_res = self.run_action(action=action, readonly=False)
         return action_res
 
-    def install_source(self, source_name: str, source_str: str, actionName:str):
+    def install_source(self, src_name:str="", src_str:str="", src_path:str=""):
         source = Source(type=Source.__name__)
-        source.name = source_name
-        source.value = source_str
-        
+        source.name = src_name
+        source.value = src_str
+        source.path = src_path
+
+        self.__read_file_from_path(source)
+
         action = InstallAction(type=InstallAction.__name__)
         action.sources = [source]
 
@@ -187,7 +200,7 @@ class DelveClient(DefaultApi):
 
         return action_res.get("sources")
 
-    def query(self, src: str, action_name, readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
+    def query(self, src: str="", action_name = "query", readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
         source = Source(type=Source.__name__)
         source.name = action_name
         source.path = ""
