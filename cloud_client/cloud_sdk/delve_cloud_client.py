@@ -22,7 +22,13 @@ class RAIDatabaseFilters(object):
 
 class RAIComputeSize(object):
     def __init__(self, compute_size="XS"):
-        self.rai_compute_sizes = {"XS": "XS","S": "S","M": "M","L": "L","XL": "XL"}
+        self.rai_compute_sizes = {
+            "XS":"XS",
+            "S":"S",
+            "M":"M",
+            "L":"L",
+            "XL":"XL"
+        }
         self.size = compute_size
 
     @property
