@@ -18,8 +18,8 @@ class TestSignature(unittest.TestCase):
         query_params = []
 
         rai_credentials = RAICredentials(
-            private_key = "krnXRBoE0lX6NddvryxKIE+7RWrkWg6xk8NcGaSOdCo=",
-            access_key = "e3536f8d-cbc6-4ed8-9de6-74cf4cb724a1"
+            private_key = "krnXRBoE0lX6NddvryxKIE+7RWrkWg6xk8NcGaSOdCo=", # pragma: allowlist secret
+            access_key = "e3536f8d-cbc6-4ed8-9de6-74cf4cb724a1" # pragma: allowlist secret
         )
         rai_config = RAIConfig()
         rai_config.creds = rai_credentials
