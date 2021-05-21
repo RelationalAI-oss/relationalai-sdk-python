@@ -15,7 +15,9 @@ app = pkgs.poetry2nix.mkPoetryApplication {
 
 in
 {
-  client = app.overrideAttrs(oldAttrs: {
+  client = app.overrideAttrs(oldAttrs: rec {
+    name = "delve-client-${version}";
+    version = "1.1.3";
     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ delveBinary ];
     checkPhase = ''
       mkdir home
