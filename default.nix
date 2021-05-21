@@ -31,6 +31,6 @@ app.overrideAttrs(oldAttrs: rec {
     echo "Shutting down delve server. Pid: $PID"
     kill -9 $PID
   '';
-  doCheck = doCheck;
+  inherit doCheck;
 })
 
