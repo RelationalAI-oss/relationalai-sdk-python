@@ -17,6 +17,7 @@ class TestInstallSource(unittest.TestCase):
         fd, path = tempfile.mkstemp()
         with os.fdopen(fd, "w") as tmp:
             tmp.write("def bar = 3")
+
         self.assertTrue(conn.create_database(overwrite=True))
         self.assertTrue(len(conn.install_source(src_name="src_3", src_path=path).get("problems")) == 0)
 
