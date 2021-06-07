@@ -125,9 +125,13 @@ class DelveClient(DefaultApi):
         if (not response.aborted):
             for act in response.actions:
                 if name == act.get("name"):
-                    return act.get("result")
+                        return {"result": act.get("result"), "problems": response.problems}
 
         return None
+
+    def status(self):
+        action = StatusAction(type=StatusAction.__name__)
+        return self.run_action(action, readonly=True) != None
 
     def cardinality(self, relname: str):
         action = CardinalityAction(type=CardinalityAction.__name__)
@@ -196,13 +200,13 @@ class DelveClient(DefaultApi):
         action.relname = relname if relname else None
 
         action_res = self.run_action(action=action, readonly = True)
-        return action_res.get("rels")
+        return {"rels": action_res.get("result").get("rels"), "problems": action_res.get("problems")}
 
     def list_source(self):
         action = ListSourceAction(type=ListSourceAction.__name__)
         action_res = self.run_action(action=action, readonly=True)
 
-        return action_res.get("sources")
+        return {"sources": action_res.get("result").get("sources"), "problems": action_res.get("problems")}
 
     def query(self, src: str="", action_name = "query", readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
         source = Source(type=Source.__name__)
@@ -216,4 +220,4 @@ class DelveClient(DefaultApi):
         action.persist = persist
 
         action_res = self.run_action(action=action, readonly=readonly)
-        return action_res["output"]
+        return {"output": action_res.get("result").get("output"), "problems": action_res.get("problems")}

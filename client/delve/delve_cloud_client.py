@@ -2,7 +2,9 @@
 from openapi_cloud_client.api.default_api import DefaultApi
 from openapi_cloud_client.api_client import ApiClient
 from openapi_cloud_client.model.create_compute_request_protocol import CreateComputeRequestProtocol
+from openapi_cloud_client.model.create_user_request_protocol import CreateUserRequestProtocol
 from openapi_cloud_client.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
+from openapi_cloud_client.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
 from delve import RAIRequest, RAIConfig
 
 class RAIComputeFilters(object):
@@ -111,6 +113,19 @@ class DelveCloudClient(DefaultApi):
     def list_databases(self, filters=RAIDatabaseFilters()):
         return self.database_get(id=filters.id, name=filters.name, state=filters.state)
 
+    def list_users(self):
+        return self.user_get()
+
+    def list_compute_events(self, compute_id:str):
+        return self.list_compute_events(compute_id)
+
+    def create_user(self, username:str):
+        create_user_request_protocol = CreateUserRequestProtocol(
+            username=username,
+            dryrun=False,
+        )
+        return self.user_put(create_user_request_protocol)
+
     def create_compute(self, compute_name:str, size:RAIComputeSize, region:str=None, dry_run=False):
         region = region if region else self.conn.config.region
         create_compute_request_protocol = CreateComputeRequestProtocol(
@@ -121,9 +136,24 @@ class DelveCloudClient(DefaultApi):
         )
         return self.compute_put(create_compute_request_protocol)
 
-    def delete_compute(self, compute_name, dry_run=False):
+    def delete_compute(self, compute_name:str, dry_run=False):
         delete_compute_request_protocol = DeleteComputeRequestProtocol(
             name=compute_name,
             dryrun=True,
         )
         return self.compute_delete(delete_compute_request_protocol)
+
+    def update_database(self, name:str, default_compute_name:str, remove_default_compute:bool):
+        update_database_request_protocol = UpdateDatabaseRequestProtocol(
+            name=name,
+            default_compute_name=default_compute_name,
+            remove_default_compute=remove_default_compute,
+            dryrun=False,
+        )
+        return self.database_post(update_database_request_protocol)
+
+    def remove_default_compute(self, dbname:str):
+        return self.update_database(dbname, None, True)
+
+    def get_account_credit_usage(self, period:str="current_month"):
+        return self.account_credits_get(period=period)

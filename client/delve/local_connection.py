@@ -23,6 +23,9 @@ class LocalConnection(Connection):
 
     def cardinality(self, rel_name: str = None):
         return self.client.cardinality(rel_name)
+
+    def status(self):
+        return self.client.status()
     
     def clone_database(self, source_name: str, overwrite: bool = False):
         return self.client.clone_database(source_name, overwrite)

@@ -1,0 +1,17 @@
+from delve import LocalConnection
+from openapi_client.exceptions import ApiException
+
+import unittest
+import datetime
+
+class TestCreateDatabase(unittest.TestCase):
+
+    def testCreateDatabase(self):
+        conn = LocalConnection(dbname="python-sdk")
+        self.assertTrue(conn.create_database(overwrite=True))
+
+        with self.assertRaises(ApiException):
+            conn.create_database()
+
+if __name__ == '__main__':
+    unittest.main()
