@@ -138,14 +138,14 @@ class DelveClient(DefaultApi):
         action.relname = relname
 
         action_res = self.run_action(action=action, readonly=True)
-        return action_res
+        return {"result": action_res.get("result").get("result"), "problems": action_res.get("problems")}
 
     def clone_database(self, source_name: str, overwrite: bool):
         xact = Transaction()
         xact.mode = "CLONE_OVERWRITE" if overwrite else "CLONE"
         xact.dbname = self.conn.dbname
         xact.actions = []
-        xact.source_dbname = source_dbname
+        xact.source_dbname = source_name
         xact.readonly = False
 
         response = self.transaction_post(xact)
@@ -221,3 +221,32 @@ class DelveClient(DefaultApi):
 
         action_res = self.run_action(action=action, readonly=readonly)
         return {"output": action_res.get("result").get("output"), "problems": action_res.get("problems")}
+
+    def enable_library(self, src_name:str):
+        action = ModifyWorkspaceAction(type=ModifyWorkspaceAction.__name__)
+        action.enable_library = src_name
+
+        action_res = self.run_action(action=action, readonly=True)
+        return True if action_res else False
+
+    def delete_edb(self, rel_name:str):
+        action = ModifyWorkspaceAction(type=ModifyWorkspaceAction.__name__)
+        action.delete_edb = rel_name
+
+        action_res = self.run_action(action, readonly=False)
+        return True if action_res else False
+
+    def collect_problems(self):
+        action = CollectProblemsAction(type=CollectProblemsAction.__name__)
+        action_res = self.run_action(action=action, readonly=True)
+        return action_res.get("result").get("problems")
+
+    def configure(self, debug:bool=None, debug_trace:bool=None, silent:bool=None, abort_on_error:bool=None):
+        action = SetOptionsAction(type=SetOptionsAction.__name__)
+        action.debug = debug
+        action.debug_trace = debug_trace
+        action.silent = silent
+        action.abort_on_error = abort_on_error
+
+        action_res = self.run_action(action=action, readonly=False)
+        return True if action_res else False

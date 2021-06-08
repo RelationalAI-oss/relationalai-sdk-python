@@ -47,3 +47,15 @@ class LocalConnection(Connection):
 
     def query(self, src: str = "", action_name: str = "query", readonly: bool = True, inputs: list = [], outputs: list = [], persist: list = []):
         return self.client.query(src, action_name, readonly, inputs, outputs, persist)
+
+    def enable_library(self, src_name:str):
+        return self.client.enable_library(src_name)
+
+    def delete_edb(self, rel_name:str):
+        return self.client.delete_edb(rel_name)
+
+    def collect_problems(self):
+        return self.client.collect_problems()
+
+    def configure(self, debug:bool=None, debug_trace:bool=None, silent:bool=None, abort_on_error:bool=None):
+        return self.client.configure(debug=debug, debug_trace=debug_trace, silent=silent, abort_on_error=abort_on_error)

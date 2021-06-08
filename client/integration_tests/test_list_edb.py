@@ -3,13 +3,13 @@ from delve import LocalConnection
 import unittest
 import datetime
 
-class TestDeleteSource(unittest.TestCase):
+class TestListEdb(unittest.TestCase):
 
-    def testDeleteSource(self):
+    def testListEdb(self):
         conn = LocalConnection(dbname="python-sdk")
         conn.debug_level = 1
         self.assertTrue(conn.create_database(overwrite=True))
-        self.assertTrue(conn.delete_source(source_name="stdlib"))
+        self.assertTrue(len(conn.list_edb().get("rels")) == 0)
 
 if __name__ == '__main__':
     unittest.main()
