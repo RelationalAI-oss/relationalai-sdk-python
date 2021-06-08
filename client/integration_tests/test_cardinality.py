@@ -11,6 +11,7 @@ class TestCardinality(unittest.TestCase):
     def testCardinality(self):
         conn = LocalConnection(dbname="python-sdk")
         conn.debug_level = 1
+        self.assertTrue(conn.create_database(overwrite=True))
         self.assertTrue(len(conn.query("def p = {(1,); (2,); (3,)}", persist=["p"], readonly=False).get("problems")) == 0)
         self.assertTrue(
             conn.cardinality("p").get("result")[0]
