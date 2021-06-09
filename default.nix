@@ -16,7 +16,7 @@ app = pkgs.poetry2nix.mkPoetryApplication {
 in
 
 app.overrideAttrs(oldAttrs: rec {
-  name = "relationalai-sdk-${version}";
+  name = "relationalai-sdk-python-${version}";
   version = "1.1.3";
   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ delveBinary ];
   checkPhase = ''
