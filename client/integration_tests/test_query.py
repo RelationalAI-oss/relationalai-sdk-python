@@ -11,6 +11,7 @@ class TestQuery(unittest.TestCase):
     def testQuery(self):
         conn = LocalConnection(dbname="python-sdk")
         conn.debug_level = 1
+        self.assertTrue(conn.create_database(overwrite=True))
         self.assertTrue(
             conn.query("def bar = 2", outputs=["bar"]).get("output")[0]
             == self.toRelation(name="bar", values=["Int64"], keys=[], columns=[[2]])
@@ -25,11 +26,11 @@ class TestQuery(unittest.TestCase):
         )
         self.assertTrue(
             conn.query("def p = {(parse_decimal[64, 2, \"1.1\"],); (parse_decimal[64, 2, \"2.2\"],); (parse_decimal[64, 2, \"3.4\"],)}", outputs=["p"]).get("output")[0]
-            == self.toRelation(name="p", values=[], keys=["FixedPointDecimals.FixedDecimal{Int64,2}"], columns=[[1.1, 2.2, 3.4]])
+            == self.toRelation(name="p", values=[], keys=["FixedPointDecimals.FixedDecimal{Int64, 2}"], columns=[[1.1, 2.2, 3.4]])
         )
         self.assertTrue(
             conn.query("def p = {(parse_decimal[64, 2, \"1.1\"],); (parse_decimal[64, 2, \"2.2\"],); (parse_decimal[64, 2, \"3.4\"],)}", outputs=["p"]).get("output")[0]
-            == self.toRelation(name="p", values=[], keys=["FixedPointDecimals.FixedDecimal{Int64,2}"], columns=[[1.1, 2.2, 3.4]])
+            == self.toRelation(name="p", values=[], keys=["FixedPointDecimals.FixedDecimal{Int64, 2}"], columns=[[1.1, 2.2, 3.4]])
         )
         self.assertTrue(
             conn.query("def p = {(1, 5); (2, 7); (3, 9)}", outputs=["p"]).get("output")[0]
