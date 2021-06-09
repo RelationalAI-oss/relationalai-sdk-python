@@ -2,14 +2,13 @@ from openapi_client.api.default_api import DefaultApi
 from openapi_client.api_client import ApiClient
 from openapi_client.models import *
 
-from delve.rai_request import RAIRequest
-from delve.rai_credentials import RAICredentials
-from delve.cloud_connection import CloudConnection
+from relationalai.rai_request import RAIRequest
+from relationalai.rai_credentials import RAICredentials
+from relationalai.connection import Connection
 
 import os
 
 class ApiClientOverload(ApiClient):
-
     def __init__(self, sign=False, rai_config=None, extra_headers:dict=dict(), extra_params:list=[], debug_level=0):
         super().__init__()
         self.sign = sign
@@ -64,13 +63,12 @@ class ApiClientOverload(ApiClient):
             _request_timeout=rai_request._request_timeout
         )
 
-class DelveClient(DefaultApi):
-
+class KGMSClient(DefaultApi):
     def __init__(self, connection):
         self.conn = connection
         api_client = None
 
-        if isinstance(self.conn, CloudConnection):
+        if isinstance(self.conn, Connection):
             extra_headers = {"Host": self.conn.config.host}
             extra_params = [("compute_name", self.conn.compute_name), ("dbname", self.conn.dbname), ("region", self.conn.config.region)]
             api_client = ApiClientOverload(

@@ -1,4 +1,4 @@
-class Connection(object):
+class ConnectionBase(object):
 
     def __init__(
         self,

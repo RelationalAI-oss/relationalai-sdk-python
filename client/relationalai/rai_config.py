@@ -2,7 +2,7 @@ import configparser
 import json
 import os
 
-from delve.rai_credentials import RAICredentials
+from relationalai.rai_credentials import RAICredentials
 
 from pathlib import Path
 

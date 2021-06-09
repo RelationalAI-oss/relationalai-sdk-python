@@ -1,9 +1,8 @@
-from delve import LocalConnection
+from relationalai import LocalConnection
 
 import os
 import tempfile
 import unittest
-import datetime
 
 class TestInstallSource(unittest.TestCase):
 

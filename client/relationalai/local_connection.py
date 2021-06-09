@@ -1,7 +1,6 @@
-from delve.connection import Connection
+from relationalai.connection_base import ConnectionBase
 
-class LocalConnection(Connection):
-
+class LocalConnection(ConnectionBase):
     def __init__(
         self,
         dbname: str,
@@ -16,8 +15,8 @@ class LocalConnection(Connection):
         self.open_mode = open_mode
 
         # work around circular dependency
-        from delve.delve_client import DelveClient
-        self.client = DelveClient(self)
+        from relationalai.kgms_client import KGMSClient
+        self.client = KGMSClient(self)
         self.client.api_client.configuration.host = self.base_url
 
 

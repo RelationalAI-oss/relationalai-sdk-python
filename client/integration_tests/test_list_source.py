@@ -1,7 +1,6 @@
-from delve import LocalConnection
+from relationalai import LocalConnection
 
 import unittest
-import datetime
 
 class TestListSource(unittest.TestCase):
 

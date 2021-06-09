@@ -1,4 +1,4 @@
-from delve import LocalConnection
+from relationalai import LocalConnection
 
 import unittest
 import datetime

@@ -1,4 +1,4 @@
-from delve import RAIRequest, RAICredentials, RAIConfig
+from relationalai import RAIRequest, RAICredentials, RAIConfig
 
 import unittest
 import datetime

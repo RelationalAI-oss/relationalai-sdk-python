@@ -5,7 +5,7 @@ from openapi_cloud_client.model.create_compute_request_protocol import CreateCom
 from openapi_cloud_client.model.create_user_request_protocol import CreateUserRequestProtocol
 from openapi_cloud_client.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
 from openapi_cloud_client.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
-from delve import RAIRequest, RAIConfig
+from relationalai import RAIRequest, RAIConfig
 
 class RAIComputeFilters(object):
     def __init__(self, id:list=[], name:list=[], size:list=[], state:list=[]):
@@ -100,7 +100,7 @@ class ApiClientOverload(ApiClient):
             _request_timeout=rai_request._request_timeout
         )
 
-class DelveCloudClient(DefaultApi):
+class ManagementClient(DefaultApi):
     def __init__(self, connection):
         self.conn = connection
         extra_headers = {"Content-Type": "application/json", "Host": self.conn.config.host}

@@ -1,8 +1,7 @@
-from delve import LocalConnection
+from relationalai import LocalConnection
 from openapi_client.exceptions import ApiException
 
 import unittest
-import datetime
 
 class TestCreateDatabase(unittest.TestCase):
 

@@ -1,8 +1,8 @@
-from delve.management_connection import ManagementConnection
-from delve.local_connection import LocalConnection
-from delve.rai_config import RAIConfig
+from relationalai.management_connection import ManagementConnection
+from relationalai.local_connection import LocalConnection
+from relationalai.rai_config import RAIConfig
 
-class CloudConnection(LocalConnection):
+class Connection(LocalConnection):
     def __init__(
         self,
         compute_name:str,

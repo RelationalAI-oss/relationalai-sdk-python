@@ -1,8 +1,8 @@
-from delve.connection import Connection
-from delve.rai_config import RAIConfig
-from delve.delve_cloud_client import RAIComputeFilters, RAIDatabaseFilters, RAIComputeSize
+from relationalai.connection_base import ConnectionBase
+from relationalai.rai_config import RAIConfig
+from relationalai.management_client import RAIComputeFilters, RAIDatabaseFilters, RAIComputeSize
 
-class ManagementConnection(Connection):
+class ManagementConnection(ConnectionBase):
     def __init__(
         self,
         verify_ssl:bool=True,
@@ -14,9 +14,9 @@ class ManagementConnection(Connection):
         super().__init__(scheme=scheme, host=self.config.host, port=self.config.port, debug_level=debug_level)
         self.verify_ssl = verify_ssl
         # work around circular dependency
-        from delve import DelveCloudClient
+        from relationalai import ManagementClient
 
-        self.client = DelveCloudClient(self)
+        self.client = ManagementClient(self)
         self.client.api_client.configuration.host = self.base_url
 
     def list_computes(self, filters=RAIComputeFilters()):
