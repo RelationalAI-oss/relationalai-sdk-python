@@ -1,4 +1,4 @@
-# RelationalAI Python SDKs
+# RelationalAI Python SDK
 
 RelationalAI Python SDK
 - API version: 1.1.3
@@ -56,7 +56,7 @@ To connect to RAICloud you need to create two connections:
 >> mngt_conn.delete_compute(compute_name="python_sdk_compute")
 ```
 
-## Getting dependencies using nix:
+## Getting dependencies using Nix:
 
 You can get `python3` and `poetry` using `Nix`:
 ```shell
