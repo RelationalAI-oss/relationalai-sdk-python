@@ -31,7 +31,7 @@ poetry run python
 ### Connecting to local rai-server
 
 To connect to a local rai-server you need to create a `LocalConnection`:
-```shell
+```python
 >>> from relationalai import LocalConnection
 >>> conn = LocalConnection(dbname="python_sdk_db")
 >>> conn.create_database(overwrite=True)
@@ -42,7 +42,7 @@ To connect to a local rai-server you need to create a `LocalConnection`:
 To connect to RAICloud you need to create two connections:
 1. `ManagementConnection` to manage RAICloud resources.
 2. `Connection` to connect to a RAICloud compute.
-```shell
+```python
 >>> from relationalai import Connection, ManagementConnection, RAIComputeSize, RAIComputeFilters
 
 >>> mngt_conn = ManagementConnection()
