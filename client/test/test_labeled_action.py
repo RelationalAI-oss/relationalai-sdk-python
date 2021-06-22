@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.labeled_action import LabeledAction  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action import Action
+globals()['Action'] = Action
+from rai_api.model.labeled_action import LabeledAction
+
 
 class TestLabeledAction(unittest.TestCase):
     """LabeledAction unit test stubs"""
@@ -29,31 +27,11 @@ class TestLabeledAction(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test LabeledAction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.labeled_action.LabeledAction()  # noqa: E501
-        if include_optional :
-            return LabeledAction(
-                action = openapi_client.models.action.Action(
-                    type = '0', ), 
-                name = '0', 
-                type = 'LabeledAction'
-            )
-        else :
-            return LabeledAction(
-                action = openapi_client.models.action.Action(
-                    type = '0', ),
-                name = '0',
-                type = 'LabeledAction',
-        )
-
     def testLabeledAction(self):
         """Test LabeledAction"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = LabeledAction()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

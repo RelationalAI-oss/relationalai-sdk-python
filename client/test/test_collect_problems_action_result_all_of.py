@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.collect_problems_action_result_all_of import CollectProblemsActionResultAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.abstract_problem import AbstractProblem
+globals()['AbstractProblem'] = AbstractProblem
+from rai_api.model.collect_problems_action_result_all_of import CollectProblemsActionResultAllOf
+
 
 class TestCollectProblemsActionResultAllOf(unittest.TestCase):
     """CollectProblemsActionResultAllOf unit test stubs"""
@@ -29,27 +27,11 @@ class TestCollectProblemsActionResultAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test CollectProblemsActionResultAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.collect_problems_action_result_all_of.CollectProblemsActionResultAllOf()  # noqa: E501
-        if include_optional :
-            return CollectProblemsActionResultAllOf(
-                problems = [
-                    openapi_client.models.abstract_problem.AbstractProblem(
-                        type = '0', )
-                    ]
-            )
-        else :
-            return CollectProblemsActionResultAllOf(
-        )
-
     def testCollectProblemsActionResultAllOf(self):
         """Test CollectProblemsActionResultAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = CollectProblemsActionResultAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

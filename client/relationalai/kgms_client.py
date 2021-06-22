@@ -1,6 +1,6 @@
-from openapi_client.api.default_api import DefaultApi
-from openapi_client.api_client import ApiClient
-from openapi_client.models import *
+from rai_api.api.default_api import DefaultApi
+from rai_api.api_client import ApiClient
+from rai_api.models import *
 
 from relationalai.rai_request import RAIRequest
 from relationalai.rai_credentials import RAICredentials

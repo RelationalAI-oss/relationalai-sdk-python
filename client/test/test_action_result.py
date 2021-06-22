@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,38 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.action_result import ActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.cardinality_action_result import CardinalityActionResult
+from rai_api.model.collect_problems_action_result import CollectProblemsActionResult
+from rai_api.model.import_action_result import ImportActionResult
+from rai_api.model.install_action_result import InstallActionResult
+from rai_api.model.list_edb_action_result import ListEdbActionResult
+from rai_api.model.list_source_action_result import ListSourceActionResult
+from rai_api.model.load_data_action_result import LoadDataActionResult
+from rai_api.model.modify_workspace_action_result import ModifyWorkspaceActionResult
+from rai_api.model.parse_action_result import ParseActionResult
+from rai_api.model.query_action_result import QueryActionResult
+from rai_api.model.set_options_action_result import SetOptionsActionResult
+from rai_api.model.status_action_result import StatusActionResult
+from rai_api.model.update_action_result import UpdateActionResult
+globals()['CardinalityActionResult'] = CardinalityActionResult
+globals()['CollectProblemsActionResult'] = CollectProblemsActionResult
+globals()['ImportActionResult'] = ImportActionResult
+globals()['InstallActionResult'] = InstallActionResult
+globals()['ListEdbActionResult'] = ListEdbActionResult
+globals()['ListSourceActionResult'] = ListSourceActionResult
+globals()['LoadDataActionResult'] = LoadDataActionResult
+globals()['ModifyWorkspaceActionResult'] = ModifyWorkspaceActionResult
+globals()['ParseActionResult'] = ParseActionResult
+globals()['QueryActionResult'] = QueryActionResult
+globals()['SetOptionsActionResult'] = SetOptionsActionResult
+globals()['StatusActionResult'] = StatusActionResult
+globals()['UpdateActionResult'] = UpdateActionResult
+from rai_api.model.action_result import ActionResult
+
 
 class TestActionResult(unittest.TestCase):
     """ActionResult unit test stubs"""
@@ -29,25 +51,11 @@ class TestActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.action_result.ActionResult()  # noqa: E501
-        if include_optional :
-            return ActionResult(
-                type = '0'
-            )
-        else :
-            return ActionResult(
-                type = '0',
-        )
-
     def testActionResult(self):
         """Test ActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

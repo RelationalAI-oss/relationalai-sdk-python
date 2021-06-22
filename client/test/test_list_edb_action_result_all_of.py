@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.list_edb_action_result_all_of import ListEdbActionResultAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.rel_key import RelKey
+globals()['RelKey'] = RelKey
+from rai_api.model.list_edb_action_result_all_of import ListEdbActionResultAllOf
+
 
 class TestListEdbActionResultAllOf(unittest.TestCase):
     """ListEdbActionResultAllOf unit test stubs"""
@@ -29,34 +27,11 @@ class TestListEdbActionResultAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ListEdbActionResultAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.list_edb_action_result_all_of.ListEdbActionResultAllOf()  # noqa: E501
-        if include_optional :
-            return ListEdbActionResultAllOf(
-                rels = [
-                    openapi_client.models.rel_key.RelKey(
-                        keys = [
-                            '0'
-                            ], 
-                        name = '0', 
-                        values = [
-                            '0'
-                            ], 
-                        type = 'RelKey', )
-                    ]
-            )
-        else :
-            return ListEdbActionResultAllOf(
-        )
-
     def testListEdbActionResultAllOf(self):
         """Test ListEdbActionResultAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ListEdbActionResultAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

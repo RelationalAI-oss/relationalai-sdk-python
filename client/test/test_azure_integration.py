@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.azure_integration import AzureIntegration  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.azure_integration_all_of import AzureIntegrationAllOf
+from rai_api.model.integration import Integration
+from rai_api.model.pair_symbol_string import PairSymbolString
+globals()['AzureIntegrationAllOf'] = AzureIntegrationAllOf
+globals()['Integration'] = Integration
+globals()['PairSymbolString'] = PairSymbolString
+from rai_api.model.azure_integration import AzureIntegration
+
 
 class TestAzureIntegration(unittest.TestCase):
     """AzureIntegration unit test stubs"""
@@ -29,37 +31,11 @@ class TestAzureIntegration(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test AzureIntegration
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.azure_integration.AzureIntegration()  # noqa: E501
-        if include_optional :
-            return AzureIntegration(
-                credentials = [
-                    openapi_client.models.pair_symbol_string_.Pair_Symbol_String_(
-                        first = '0', 
-                        second = '0', 
-                        type = 'Pair_Symbol_String_', )
-                    ], 
-                name = '0', 
-                storage_allowed_locations = [
-                    '0'
-                    ], 
-                storage_blocked_locations = [
-                    '0'
-                    ], 
-                tenant_id = '0'
-            )
-        else :
-            return AzureIntegration(
-        )
-
     def testAzureIntegration(self):
         """Test AzureIntegration"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = AzureIntegration()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

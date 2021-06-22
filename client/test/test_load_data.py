@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.load_data import LoadData  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.file_schema import FileSchema
+from rai_api.model.file_syntax import FileSyntax
+from rai_api.model.integration import Integration
+globals()['FileSchema'] = FileSchema
+globals()['FileSyntax'] = FileSyntax
+globals()['Integration'] = Integration
+from rai_api.model.load_data import LoadData
+
 
 class TestLoadData(unittest.TestCase):
     """LoadData unit test stubs"""
@@ -29,37 +31,11 @@ class TestLoadData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test LoadData
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.load_data.LoadData()  # noqa: E501
-        if include_optional :
-            return LoadData(
-                content_type = '0', 
-                data = '0', 
-                file_schema = openapi_client.models.file_schema.FileSchema(
-                    type = '0', ), 
-                file_syntax = openapi_client.models.file_syntax.FileSyntax(
-                    type = '0', ), 
-                integration = openapi_client.models.integration.Integration(
-                    type = '0', ), 
-                key = null, 
-                path = '0', 
-                type = 'LoadData'
-            )
-        else :
-            return LoadData(
-                content_type = '0',
-                key = null,
-                type = 'LoadData',
-        )
-
     def testLoadData(self):
         """Test LoadData"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = LoadData()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

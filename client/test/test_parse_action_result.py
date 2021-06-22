@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.parse_action_result import ParseActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.abstract_problem import AbstractProblem
+from rai_api.model.action_result import ActionResult
+from rai_api.model.collect_problems_action_result_all_of import CollectProblemsActionResultAllOf
+globals()['AbstractProblem'] = AbstractProblem
+globals()['ActionResult'] = ActionResult
+globals()['CollectProblemsActionResultAllOf'] = CollectProblemsActionResultAllOf
+from rai_api.model.parse_action_result import ParseActionResult
+
 
 class TestParseActionResult(unittest.TestCase):
     """ParseActionResult unit test stubs"""
@@ -29,27 +31,11 @@ class TestParseActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ParseActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.parse_action_result.ParseActionResult()  # noqa: E501
-        if include_optional :
-            return ParseActionResult(
-                problems = [
-                    openapi_client.models.abstract_problem.AbstractProblem(
-                        type = '0', )
-                    ]
-            )
-        else :
-            return ParseActionResult(
-        )
-
     def testParseActionResult(self):
         """Test ParseActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ParseActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

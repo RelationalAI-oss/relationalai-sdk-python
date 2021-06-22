@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.modify_workspace_action_result import ModifyWorkspaceActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action_result import ActionResult
+from rai_api.model.modify_workspace_action_result_all_of import ModifyWorkspaceActionResultAllOf
+from rai_api.model.rel_key import RelKey
+globals()['ActionResult'] = ActionResult
+globals()['ModifyWorkspaceActionResultAllOf'] = ModifyWorkspaceActionResultAllOf
+globals()['RelKey'] = RelKey
+from rai_api.model.modify_workspace_action_result import ModifyWorkspaceActionResult
+
 
 class TestModifyWorkspaceActionResult(unittest.TestCase):
     """ModifyWorkspaceActionResult unit test stubs"""
@@ -29,34 +31,11 @@ class TestModifyWorkspaceActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ModifyWorkspaceActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.modify_workspace_action_result.ModifyWorkspaceActionResult()  # noqa: E501
-        if include_optional :
-            return ModifyWorkspaceActionResult(
-                delete_edb_result = [
-                    openapi_client.models.rel_key.RelKey(
-                        keys = [
-                            '0'
-                            ], 
-                        name = '0', 
-                        values = [
-                            '0'
-                            ], 
-                        type = 'RelKey', )
-                    ]
-            )
-        else :
-            return ModifyWorkspaceActionResult(
-        )
-
     def testModifyWorkspaceActionResult(self):
         """Test ModifyWorkspaceActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ModifyWorkspaceActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

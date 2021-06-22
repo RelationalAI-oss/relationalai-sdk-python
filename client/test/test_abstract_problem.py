@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,30 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.abstract_problem import AbstractProblem  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.client_problem import ClientProblem
+from rai_api.model.exception_problem import ExceptionProblem
+from rai_api.model.integrity_constraint_problem import IntegrityConstraintProblem
+from rai_api.model.integrity_constraint_violation import IntegrityConstraintViolation
+from rai_api.model.output_problem import OutputProblem
+from rai_api.model.persist_problem import PersistProblem
+from rai_api.model.storage_problem import StorageProblem
+from rai_api.model.syntax_error import SyntaxError
+from rai_api.model.workspace_load_problem import WorkspaceLoadProblem
+globals()['ClientProblem'] = ClientProblem
+globals()['ExceptionProblem'] = ExceptionProblem
+globals()['IntegrityConstraintProblem'] = IntegrityConstraintProblem
+globals()['IntegrityConstraintViolation'] = IntegrityConstraintViolation
+globals()['OutputProblem'] = OutputProblem
+globals()['PersistProblem'] = PersistProblem
+globals()['StorageProblem'] = StorageProblem
+globals()['SyntaxError'] = SyntaxError
+globals()['WorkspaceLoadProblem'] = WorkspaceLoadProblem
+from rai_api.model.abstract_problem import AbstractProblem
+
 
 class TestAbstractProblem(unittest.TestCase):
     """AbstractProblem unit test stubs"""
@@ -29,25 +43,11 @@ class TestAbstractProblem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test AbstractProblem
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.abstract_problem.AbstractProblem()  # noqa: E501
-        if include_optional :
-            return AbstractProblem(
-                type = '0'
-            )
-        else :
-            return AbstractProblem(
-                type = '0',
-        )
-
     def testAbstractProblem(self):
         """Test AbstractProblem"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = AbstractProblem()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

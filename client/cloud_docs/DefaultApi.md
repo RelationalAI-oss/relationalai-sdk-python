@@ -1,4 +1,4 @@
-# openapi_client.DefaultApi
+# raicloud_api.DefaultApi
 
 All URIs are relative to *http://127.0.0.1:8080*
 
@@ -24,19 +24,19 @@ Get account credits consumption
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.get_account_credits_response import GetAccountCreditsResponse
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.get_account_credits_response import GetAccountCreditsResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     period = "current_month" # str |  (optional)
@@ -47,7 +47,7 @@ with openapi_client.ApiClient() as api_client:
         # Get account credits consumption
         api_response = api_instance.account_credits_get(period=period)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->account_credits_get: %s\n" % e)
 ```
 
@@ -86,20 +86,20 @@ Delete compute
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
-from openapi_client.model.delete_compute_response_protocol import DeleteComputeResponseProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
+from raicloud_api.model.delete_compute_response_protocol import DeleteComputeResponseProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     delete_compute_request_protocol = DeleteComputeRequestProtocol(
@@ -112,7 +112,7 @@ with openapi_client.ApiClient() as api_client:
         # Delete compute
         api_response = api_instance.compute_delete(delete_compute_request_protocol)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->compute_delete: %s\n" % e)
 ```
 
@@ -151,19 +151,19 @@ List computes
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.list_computes_response_protocol import ListComputesResponseProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.list_computes_response_protocol import ListComputesResponseProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = [
@@ -185,7 +185,7 @@ with openapi_client.ApiClient() as api_client:
         # List computes
         api_response = api_instance.compute_get(id=id, name=name, size=size, state=state)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->compute_get: %s\n" % e)
 ```
 
@@ -227,20 +227,20 @@ Create compute
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.create_compute_request_protocol import CreateComputeRequestProtocol
-from openapi_client.model.create_compute_response_protocol import CreateComputeResponseProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.create_compute_response_protocol import CreateComputeResponseProtocol
+from raicloud_api.model.create_compute_request_protocol import CreateComputeRequestProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     create_compute_request_protocol = CreateComputeRequestProtocol(
@@ -255,7 +255,7 @@ with openapi_client.ApiClient() as api_client:
         # Create compute
         api_response = api_instance.compute_put(create_compute_request_protocol)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->compute_put: %s\n" % e)
 ```
 
@@ -294,19 +294,19 @@ List databases
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.list_databases_response_protocol import ListDatabasesResponseProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.list_databases_response_protocol import ListDatabasesResponseProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     id = [
@@ -325,7 +325,7 @@ with openapi_client.ApiClient() as api_client:
         # List databases
         api_response = api_instance.database_get(id=id, name=name, state=state)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->database_get: %s\n" % e)
 ```
 
@@ -366,19 +366,19 @@ Update database
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     update_database_request_protocol = UpdateDatabaseRequestProtocol(
@@ -392,7 +392,7 @@ with openapi_client.ApiClient() as api_client:
     try:
         # Update database
         api_instance.database_post(update_database_request_protocol)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->database_post: %s\n" % e)
 ```
 
@@ -431,19 +431,19 @@ List compute events
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.list_compute_events_response import ListComputeEventsResponse
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.list_compute_events_response import ListComputeEventsResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     compute_id = "computeId_example" # str | 
@@ -453,7 +453,7 @@ with openapi_client.ApiClient() as api_client:
         # List compute events
         api_response = api_instance.list_compute_events(compute_id)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->list_compute_events: %s\n" % e)
 ```
 
@@ -492,19 +492,19 @@ List users
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.list_users_response_protocol import ListUsersResponseProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.list_users_response_protocol import ListUsersResponseProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
 
@@ -513,7 +513,7 @@ with openapi_client.ApiClient() as api_client:
         # List users
         api_response = api_instance.user_get()
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->user_get: %s\n" % e)
 ```
 
@@ -549,20 +549,20 @@ Create user
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.create_user_response_protocol import CreateUserResponseProtocol
-from openapi_client.model.create_user_request_protocol import CreateUserRequestProtocol
+import raicloud_api
+from raicloud_api.api import default_api
+from raicloud_api.model.create_user_request_protocol import CreateUserRequestProtocol
+from raicloud_api.model.create_user_response_protocol import CreateUserResponseProtocol
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8080
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = raicloud_api.Configuration(
     host = "http://127.0.0.1:8080"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with raicloud_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     create_user_request_protocol = CreateUserRequestProtocol(
@@ -575,7 +575,7 @@ with openapi_client.ApiClient() as api_client:
         # Create user
         api_response = api_instance.user_put(create_user_request_protocol)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except raicloud_api.ApiException as e:
         print("Exception when calling DefaultApi->user_put: %s\n" % e)
 ```
 

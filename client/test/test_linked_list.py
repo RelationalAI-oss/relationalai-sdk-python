@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.linked_list import LinkedList  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.cons import Cons
+from rai_api.model.nil import Nil
+globals()['Cons'] = Cons
+globals()['Nil'] = Nil
+from rai_api.model.linked_list import LinkedList
+
 
 class TestLinkedList(unittest.TestCase):
     """LinkedList unit test stubs"""
@@ -29,25 +29,11 @@ class TestLinkedList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test LinkedList
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.linked_list.LinkedList()  # noqa: E501
-        if include_optional :
-            return LinkedList(
-                type = '0'
-            )
-        else :
-            return LinkedList(
-                type = '0',
-        )
-
     def testLinkedList(self):
         """Test LinkedList"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = LinkedList()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

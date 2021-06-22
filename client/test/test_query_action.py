@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,20 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.query_action import QueryAction  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action import Action
+from rai_api.model.query_action_all_of import QueryActionAllOf
+from rai_api.model.relation import Relation
+from rai_api.model.source import Source
+globals()['Action'] = Action
+globals()['QueryActionAllOf'] = QueryActionAllOf
+globals()['Relation'] = Relation
+globals()['Source'] = Source
+from rai_api.model.query_action import QueryAction
+
 
 class TestQueryAction(unittest.TestCase):
     """QueryAction unit test stubs"""
@@ -29,57 +33,11 @@ class TestQueryAction(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test QueryAction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.query_action.QueryAction()  # noqa: E501
-        if include_optional :
-            return QueryAction(
-                inputs = [
-                    openapi_client.models.relation.Relation(
-                        columns = [
-                            [
-                                null
-                                ]
-                            ], 
-                        rel_key = openapi_client.models.rel_key.RelKey(
-                            keys = [
-                                '0'
-                                ], 
-                            name = '0', 
-                            values = [
-                                '0'
-                                ], 
-                            type = 'RelKey', ), 
-                        type = 'Relation', )
-                    ], 
-                outputs = [
-                    '0'
-                    ], 
-                persist = [
-                    '0'
-                    ], 
-                source = openapi_client.models.source.Source(
-                    name = '0', 
-                    path = '0', 
-                    value = '0', 
-                    type = 'Source', )
-            )
-        else :
-            return QueryAction(
-                source = openapi_client.models.source.Source(
-                    name = '0', 
-                    path = '0', 
-                    value = '0', 
-                    type = 'Source', ),
-        )
-
     def testQueryAction(self):
         """Test QueryAction"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = QueryAction()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

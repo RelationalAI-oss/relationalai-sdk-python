@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.syntax_error_all_of import SyntaxErrorAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.linked_list import LinkedList
+from rai_api.model.syntax_node import SyntaxNode
+globals()['LinkedList'] = LinkedList
+globals()['SyntaxNode'] = SyntaxNode
+from rai_api.model.syntax_error_all_of import SyntaxErrorAllOf
+
 
 class TestSyntaxErrorAllOf(unittest.TestCase):
     """SyntaxErrorAllOf unit test stubs"""
@@ -29,33 +29,11 @@ class TestSyntaxErrorAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test SyntaxErrorAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.syntax_error_all_of.SyntaxErrorAllOf()  # noqa: E501
-        if include_optional :
-            return SyntaxErrorAllOf(
-                next = openapi_client.models.syntax_node.SyntaxNode(
-                    type = '0', ), 
-                node = openapi_client.models.syntax_node.SyntaxNode(
-                    type = '0', ), 
-                trace = openapi_client.models.linked_list.LinkedList(
-                    type = '0', )
-            )
-        else :
-            return SyntaxErrorAllOf(
-                node = openapi_client.models.syntax_node.SyntaxNode(
-                    type = '0', ),
-                trace = openapi_client.models.linked_list.LinkedList(
-                    type = '0', ),
-        )
-
     def testSyntaxErrorAllOf(self):
         """Test SyntaxErrorAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = SyntaxErrorAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

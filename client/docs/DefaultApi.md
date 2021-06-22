@@ -1,4 +1,4 @@
-# openapi_client.DefaultApi
+# rai_api.DefaultApi
 
 All URIs are relative to *http://127.0.0.1:8010*
 
@@ -16,21 +16,21 @@ Issues a transaction to be executed
 
 ```python
 import time
-import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.transaction_result import TransactionResult
-from openapi_client.model.transaction import Transaction
-from openapi_client.model.infra_error import InfraError
+import rai_api
+from rai_api.api import default_api
+from rai_api.model.transaction_result import TransactionResult
+from rai_api.model.infra_error import InfraError
+from rai_api.model.transaction import Transaction
 from pprint import pprint
 # Defining the host is optional and defaults to http://127.0.0.1:8010
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rai_api.Configuration(
     host = "http://127.0.0.1:8010"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with rai_api.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     transaction = Transaction(
@@ -57,7 +57,7 @@ with openapi_client.ApiClient() as api_client:
         # Issues a transaction to be executed
         api_response = api_instance.transaction_post(transaction)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except rai_api.ApiException as e:
         print("Exception when calling DefaultApi->transaction_post: %s\n" % e)
 ```
 

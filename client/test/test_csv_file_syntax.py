@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.csv_file_syntax import CSVFileSyntax  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.csv_file_syntax_all_of import CSVFileSyntaxAllOf
+from rai_api.model.file_syntax import FileSyntax
+globals()['CSVFileSyntaxAllOf'] = CSVFileSyntaxAllOf
+globals()['FileSyntax'] = FileSyntax
+from rai_api.model.csv_file_syntax import CSVFileSyntax
+
 
 class TestCSVFileSyntax(unittest.TestCase):
     """CSVFileSyntax unit test stubs"""
@@ -29,43 +29,11 @@ class TestCSVFileSyntax(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test CSVFileSyntax
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.csv_file_syntax.CSVFileSyntax()  # noqa: E501
-        if include_optional :
-            return CSVFileSyntax(
-                datarow = 56, 
-                delim = '0', 
-                escapechar = '0', 
-                header = [
-                    '0'
-                    ], 
-                header_row = 56, 
-                ignorerepeated = True, 
-                missingstrings = [
-                    '0'
-                    ], 
-                normalizenames = True, 
-                quotechar = '0'
-            )
-        else :
-            return CSVFileSyntax(
-                datarow = 56,
-                delim = '0',
-                escapechar = '0',
-                header_row = 56,
-                ignorerepeated = True,
-                normalizenames = True,
-                quotechar = '0',
-        )
-
     def testCSVFileSyntax(self):
         """Test CSVFileSyntax"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = CSVFileSyntax()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

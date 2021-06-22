@@ -1,10 +1,10 @@
 
-from openapi_cloud_client.api.default_api import DefaultApi
-from openapi_cloud_client.api_client import ApiClient
-from openapi_cloud_client.model.create_compute_request_protocol import CreateComputeRequestProtocol
-from openapi_cloud_client.model.create_user_request_protocol import CreateUserRequestProtocol
-from openapi_cloud_client.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
-from openapi_cloud_client.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
+from raicloud_api.api.default_api import DefaultApi
+from raicloud_api.api_client import ApiClient
+from raicloud_api.model.create_compute_request_protocol import CreateComputeRequestProtocol
+from raicloud_api.model.create_user_request_protocol import CreateUserRequestProtocol
+from raicloud_api.model.delete_compute_request_protocol import DeleteComputeRequestProtocol
+from raicloud_api.model.update_database_request_protocol import UpdateDatabaseRequestProtocol
 from relationalai import RAIRequest, RAIConfig
 
 class RAIComputeFilters(object):

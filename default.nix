@@ -33,4 +33,3 @@ app.overrideAttrs(oldAttrs: rec {
   '';
   inherit doCheck;
 })
-

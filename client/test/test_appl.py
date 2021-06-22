@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.appl import Appl  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.appl_all_of import ApplAllOf
+from rai_api.model.range import Range
+from rai_api.model.syntax_node import SyntaxNode
+globals()['ApplAllOf'] = ApplAllOf
+globals()['Range'] = Range
+globals()['SyntaxNode'] = SyntaxNode
+from rai_api.model.appl import Appl
+
 
 class TestAppl(unittest.TestCase):
     """Appl unit test stubs"""
@@ -29,63 +31,11 @@ class TestAppl(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Appl
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.appl.Appl()  # noqa: E501
-        if include_optional :
-            return Appl(
-                arguments = [
-                    openapi_client.models.syntax_node.SyntaxNode(
-                        type = '0', )
-                    ], 
-                error = True, 
-                missing = True, 
-                range = openapi_client.models.range.Range(
-                    area = openapi_client.models.area.Area(
-                        end_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        start_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        type = 'Area', ), 
-                    end_byte = 56, 
-                    input = null, 
-                    start_byte = 56, 
-                    type = 'Range', ), 
-                symbol = '0'
-            )
-        else :
-            return Appl(
-                error = True,
-                missing = True,
-                range = openapi_client.models.range.Range(
-                    area = openapi_client.models.area.Area(
-                        end_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        start_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        type = 'Area', ), 
-                    end_byte = 56, 
-                    input = null, 
-                    start_byte = 56, 
-                    type = 'Range', ),
-                symbol = '0',
-        )
-
     def testAppl(self):
         """Test Appl"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Appl()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

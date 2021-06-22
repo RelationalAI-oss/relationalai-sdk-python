@@ -1,5 +1,5 @@
 from relationalai import LocalConnection
-from openapi_client.exceptions import ApiException
+from rai_api.exceptions import ApiException
 
 import unittest
 

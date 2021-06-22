@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.list_source_action_result import ListSourceActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action_result import ActionResult
+from rai_api.model.install_action_all_of import InstallActionAllOf
+from rai_api.model.source import Source
+globals()['ActionResult'] = ActionResult
+globals()['InstallActionAllOf'] = InstallActionAllOf
+globals()['Source'] = Source
+from rai_api.model.list_source_action_result import ListSourceActionResult
+
 
 class TestListSourceActionResult(unittest.TestCase):
     """ListSourceActionResult unit test stubs"""
@@ -29,30 +31,11 @@ class TestListSourceActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ListSourceActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.list_source_action_result.ListSourceActionResult()  # noqa: E501
-        if include_optional :
-            return ListSourceActionResult(
-                sources = [
-                    openapi_client.models.source.Source(
-                        name = '0', 
-                        path = '0', 
-                        value = '0', 
-                        type = 'Source', )
-                    ]
-            )
-        else :
-            return ListSourceActionResult(
-        )
-
     def testListSourceActionResult(self):
         """Test ListSourceActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ListSourceActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

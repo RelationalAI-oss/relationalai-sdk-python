@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.syntax_node import SyntaxNode  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.appl import Appl
+from rai_api.model.literal import Literal
+from rai_api.model.token import Token
+globals()['Appl'] = Appl
+globals()['Literal'] = Literal
+globals()['Token'] = Token
+from rai_api.model.syntax_node import SyntaxNode
+
 
 class TestSyntaxNode(unittest.TestCase):
     """SyntaxNode unit test stubs"""
@@ -29,25 +31,11 @@ class TestSyntaxNode(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test SyntaxNode
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.syntax_node.SyntaxNode()  # noqa: E501
-        if include_optional :
-            return SyntaxNode(
-                type = '0'
-            )
-        else :
-            return SyntaxNode(
-                type = '0',
-        )
-
     def testSyntaxNode(self):
         """Test SyntaxNode"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = SyntaxNode()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

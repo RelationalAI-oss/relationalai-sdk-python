@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.list_edb_action_result import ListEdbActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action_result import ActionResult
+from rai_api.model.list_edb_action_result_all_of import ListEdbActionResultAllOf
+from rai_api.model.rel_key import RelKey
+globals()['ActionResult'] = ActionResult
+globals()['ListEdbActionResultAllOf'] = ListEdbActionResultAllOf
+globals()['RelKey'] = RelKey
+from rai_api.model.list_edb_action_result import ListEdbActionResult
+
 
 class TestListEdbActionResult(unittest.TestCase):
     """ListEdbActionResult unit test stubs"""
@@ -29,34 +31,11 @@ class TestListEdbActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ListEdbActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.list_edb_action_result.ListEdbActionResult()  # noqa: E501
-        if include_optional :
-            return ListEdbActionResult(
-                rels = [
-                    openapi_client.models.rel_key.RelKey(
-                        keys = [
-                            '0'
-                            ], 
-                        name = '0', 
-                        values = [
-                            '0'
-                            ], 
-                        type = 'RelKey', )
-                    ]
-            )
-        else :
-            return ListEdbActionResult(
-        )
-
     def testListEdbActionResult(self):
         """Test ListEdbActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ListEdbActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

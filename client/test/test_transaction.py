@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.transaction import Transaction  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.labeled_action import LabeledAction
+globals()['LabeledAction'] = LabeledAction
+from rai_api.model.transaction import Transaction
+
 
 class TestTransaction(unittest.TestCase):
     """Transaction unit test stubs"""
@@ -29,45 +27,11 @@ class TestTransaction(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Transaction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.transaction.Transaction()  # noqa: E501
-        if include_optional :
-            return Transaction(
-                abort = True, 
-                actions = [
-                    openapi_client.models.labeled_action.LabeledAction(
-                        action = openapi_client.models.action.Action(
-                            type = '0', ), 
-                        name = '0', 
-                        type = 'LabeledAction', )
-                    ], 
-                dbname = '0', 
-                debug_level = 56, 
-                mode = 'OPEN', 
-                nowait_durable = True, 
-                readonly = True, 
-                source_dbname = '0', 
-                version = 56, 
-                type = 'Transaction'
-            )
-        else :
-            return Transaction(
-                abort = True,
-                dbname = '0',
-                mode = 'OPEN',
-                nowait_durable = True,
-                readonly = True,
-                type = 'Transaction',
-        )
-
     def testTransaction(self):
         """Test Transaction"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Transaction()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

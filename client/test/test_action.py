@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,38 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.action import Action  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.cardinality_action import CardinalityAction
+from rai_api.model.collect_problems_action import CollectProblemsAction
+from rai_api.model.import_action import ImportAction
+from rai_api.model.install_action import InstallAction
+from rai_api.model.list_edb_action import ListEdbAction
+from rai_api.model.list_source_action import ListSourceAction
+from rai_api.model.load_data_action import LoadDataAction
+from rai_api.model.modify_workspace_action import ModifyWorkspaceAction
+from rai_api.model.parse_action import ParseAction
+from rai_api.model.query_action import QueryAction
+from rai_api.model.set_options_action import SetOptionsAction
+from rai_api.model.status_action import StatusAction
+from rai_api.model.update_action import UpdateAction
+globals()['CardinalityAction'] = CardinalityAction
+globals()['CollectProblemsAction'] = CollectProblemsAction
+globals()['ImportAction'] = ImportAction
+globals()['InstallAction'] = InstallAction
+globals()['ListEdbAction'] = ListEdbAction
+globals()['ListSourceAction'] = ListSourceAction
+globals()['LoadDataAction'] = LoadDataAction
+globals()['ModifyWorkspaceAction'] = ModifyWorkspaceAction
+globals()['ParseAction'] = ParseAction
+globals()['QueryAction'] = QueryAction
+globals()['SetOptionsAction'] = SetOptionsAction
+globals()['StatusAction'] = StatusAction
+globals()['UpdateAction'] = UpdateAction
+from rai_api.model.action import Action
+
 
 class TestAction(unittest.TestCase):
     """Action unit test stubs"""
@@ -29,25 +51,11 @@ class TestAction(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Action
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.action.Action()  # noqa: E501
-        if include_optional :
-            return Action(
-                type = '0'
-            )
-        else :
-            return Action(
-                type = '0',
-        )
-
     def testAction(self):
         """Test Action"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Action()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

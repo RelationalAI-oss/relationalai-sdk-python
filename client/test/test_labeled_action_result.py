@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.labeled_action_result import LabeledActionResult  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action_result import ActionResult
+globals()['ActionResult'] = ActionResult
+from rai_api.model.labeled_action_result import LabeledActionResult
+
 
 class TestLabeledActionResult(unittest.TestCase):
     """LabeledActionResult unit test stubs"""
@@ -29,31 +27,11 @@ class TestLabeledActionResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test LabeledActionResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.labeled_action_result.LabeledActionResult()  # noqa: E501
-        if include_optional :
-            return LabeledActionResult(
-                name = '0', 
-                result = openapi_client.models.action_result.ActionResult(
-                    type = '0', ), 
-                type = 'LabeledActionResult'
-            )
-        else :
-            return LabeledActionResult(
-                name = '0',
-                result = openapi_client.models.action_result.ActionResult(
-                    type = '0', ),
-                type = 'LabeledActionResult',
-        )
-
     def testLabeledActionResult(self):
         """Test LabeledActionResult"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = LabeledActionResult()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

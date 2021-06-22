@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.integrity_constraint_problem import IntegrityConstraintProblem  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.abstract_problem import AbstractProblem
+from rai_api.model.integrity_constraint_problem_all_of import IntegrityConstraintProblemAllOf
+globals()['AbstractProblem'] = AbstractProblem
+globals()['IntegrityConstraintProblemAllOf'] = IntegrityConstraintProblemAllOf
+from rai_api.model.integrity_constraint_problem import IntegrityConstraintProblem
+
 
 class TestIntegrityConstraintProblem(unittest.TestCase):
     """IntegrityConstraintProblem unit test stubs"""
@@ -29,25 +29,11 @@ class TestIntegrityConstraintProblem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test IntegrityConstraintProblem
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.integrity_constraint_problem.IntegrityConstraintProblem()  # noqa: E501
-        if include_optional :
-            return IntegrityConstraintProblem(
-                exception = '0'
-            )
-        else :
-            return IntegrityConstraintProblem(
-                exception = '0',
-        )
-
     def testIntegrityConstraintProblem(self):
         """Test IntegrityConstraintProblem"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = IntegrityConstraintProblem()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

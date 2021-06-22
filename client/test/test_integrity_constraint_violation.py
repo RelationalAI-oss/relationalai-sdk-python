@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.integrity_constraint_violation import IntegrityConstraintViolation  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.abstract_problem import AbstractProblem
+from rai_api.model.ic_violation import ICViolation
+from rai_api.model.integrity_constraint_violation_all_of import IntegrityConstraintViolationAllOf
+globals()['AbstractProblem'] = AbstractProblem
+globals()['ICViolation'] = ICViolation
+globals()['IntegrityConstraintViolationAllOf'] = IntegrityConstraintViolationAllOf
+from rai_api.model.integrity_constraint_violation import IntegrityConstraintViolation
+
 
 class TestIntegrityConstraintViolation(unittest.TestCase):
     """IntegrityConstraintViolation unit test stubs"""
@@ -29,37 +31,11 @@ class TestIntegrityConstraintViolation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test IntegrityConstraintViolation
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.integrity_constraint_violation.IntegrityConstraintViolation()  # noqa: E501
-        if include_optional :
-            return IntegrityConstraintViolation(
-                sources = [
-                    openapi_client.models.ic_violation.ICViolation(
-                        rel_key = openapi_client.models.rel_key.RelKey(
-                            keys = [
-                                '0'
-                                ], 
-                            name = '0', 
-                            values = [
-                                '0'
-                                ], 
-                            type = 'RelKey', ), 
-                        source = '0', 
-                        type = 'ICViolation', )
-                    ]
-            )
-        else :
-            return IntegrityConstraintViolation(
-        )
-
     def testIntegrityConstraintViolation(self):
         """Test IntegrityConstraintViolation"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = IntegrityConstraintViolation()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

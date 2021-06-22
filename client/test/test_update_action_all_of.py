@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.update_action_all_of import UpdateActionAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.pair_any_value_any_value import PairAnyValueAnyValue
+from rai_api.model.rel_key import RelKey
+globals()['PairAnyValueAnyValue'] = PairAnyValueAnyValue
+globals()['RelKey'] = RelKey
+from rai_api.model.update_action_all_of import UpdateActionAllOf
+
 
 class TestUpdateActionAllOf(unittest.TestCase):
     """UpdateActionAllOf unit test stubs"""
@@ -29,53 +29,11 @@ class TestUpdateActionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test UpdateActionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.update_action_all_of.UpdateActionAllOf()  # noqa: E501
-        if include_optional :
-            return UpdateActionAllOf(
-                delta = [
-                    openapi_client.models.pair_any_value_any_value_.Pair_AnyValue_AnyValue_(
-                        first = null, 
-                        second = null, 
-                        type = 'Pair_AnyValue_AnyValue_', )
-                    ], 
-                rel = openapi_client.models.rel_key.RelKey(
-                    keys = [
-                        '0'
-                        ], 
-                    name = '0', 
-                    values = [
-                        '0'
-                        ], 
-                    type = 'RelKey', ), 
-                updates = [
-                    openapi_client.models.pair_any_value_any_value_.Pair_AnyValue_AnyValue_(
-                        first = null, 
-                        second = null, 
-                        type = 'Pair_AnyValue_AnyValue_', )
-                    ]
-            )
-        else :
-            return UpdateActionAllOf(
-                rel = openapi_client.models.rel_key.RelKey(
-                    keys = [
-                        '0'
-                        ], 
-                    name = '0', 
-                    values = [
-                        '0'
-                        ], 
-                    type = 'RelKey', ),
-        )
-
     def testUpdateActionAllOf(self):
         """Test UpdateActionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = UpdateActionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

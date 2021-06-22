@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.literal_all_of import LiteralAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.range import Range
+globals()['Range'] = Range
+from rai_api.model.literal_all_of import LiteralAllOf
+
 
 class TestLiteralAllOf(unittest.TestCase):
     """LiteralAllOf unit test stubs"""
@@ -29,57 +27,11 @@ class TestLiteralAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test LiteralAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.literal_all_of.LiteralAllOf()  # noqa: E501
-        if include_optional :
-            return LiteralAllOf(
-                missing = True, 
-                range = openapi_client.models.range.Range(
-                    area = openapi_client.models.area.Area(
-                        end_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        start_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        type = 'Area', ), 
-                    end_byte = 56, 
-                    input = null, 
-                    start_byte = 56, 
-                    type = 'Range', ), 
-                value = '0'
-            )
-        else :
-            return LiteralAllOf(
-                missing = True,
-                range = openapi_client.models.range.Range(
-                    area = openapi_client.models.area.Area(
-                        end_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        start_point = openapi_client.models.point.Point(
-                            column = 56, 
-                            row = 56, 
-                            type = 'Point', ), 
-                        type = 'Area', ), 
-                    end_byte = 56, 
-                    input = null, 
-                    start_byte = 56, 
-                    type = 'Range', ),
-                value = '0',
-        )
-
     def testLiteralAllOf(self):
         """Test LiteralAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = LiteralAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

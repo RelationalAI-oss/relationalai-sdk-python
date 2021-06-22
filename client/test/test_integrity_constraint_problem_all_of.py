@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.integrity_constraint_problem_all_of import IntegrityConstraintProblemAllOf  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.integrity_constraint_problem_all_of import IntegrityConstraintProblemAllOf
+
 
 class TestIntegrityConstraintProblemAllOf(unittest.TestCase):
     """IntegrityConstraintProblemAllOf unit test stubs"""
@@ -29,25 +25,11 @@ class TestIntegrityConstraintProblemAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test IntegrityConstraintProblemAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.integrity_constraint_problem_all_of.IntegrityConstraintProblemAllOf()  # noqa: E501
-        if include_optional :
-            return IntegrityConstraintProblemAllOf(
-                exception = '0'
-            )
-        else :
-            return IntegrityConstraintProblemAllOf(
-                exception = '0',
-        )
-
     def testIntegrityConstraintProblemAllOf(self):
         """Test IntegrityConstraintProblemAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = IntegrityConstraintProblemAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

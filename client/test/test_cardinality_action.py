@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Delve Client SDK
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import openapi_client
-from openapi_client.models.cardinality_action import CardinalityAction  # noqa: E501
-from openapi_client.rest import ApiException
+import rai_api
+from rai_api.model.action import Action
+from rai_api.model.cardinality_action_all_of import CardinalityActionAllOf
+globals()['Action'] = Action
+globals()['CardinalityActionAllOf'] = CardinalityActionAllOf
+from rai_api.model.cardinality_action import CardinalityAction
+
 
 class TestCardinalityAction(unittest.TestCase):
     """CardinalityAction unit test stubs"""
@@ -29,24 +29,11 @@ class TestCardinalityAction(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test CardinalityAction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = openapi_client.models.cardinality_action.CardinalityAction()  # noqa: E501
-        if include_optional :
-            return CardinalityAction(
-                relname = '0'
-            )
-        else :
-            return CardinalityAction(
-        )
-
     def testCardinalityAction(self):
         """Test CardinalityAction"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = CardinalityAction()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':
