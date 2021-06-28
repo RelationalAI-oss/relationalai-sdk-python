@@ -40,7 +40,8 @@ class RAIRequest(object):
         self._preload_content = _preload_content
         self._request_timeout = _request_timeout
 
-    def sign(self, t=datetime.datetime.utcnow(), debug_level:int=0):
+    def sign(self, t=None, debug_level:int=0):
+        t = datetime.datetime.utcnow() if not t else t
 
         # ISO8601 date/time strings for time of request
         signature_date = t.strftime("%Y%m%dT%H%M%SZ")
