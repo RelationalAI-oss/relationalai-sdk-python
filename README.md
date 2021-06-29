@@ -1,6 +1,6 @@
 # RelationalAI Python SDK
 
-RelationalAI Python SDK
+[RelationalAI Python SDK](https://github.com/RelationalAI-oss/relationalai-sdk-python)
 - API version: 1.1.3
 
 This is a Client SDK for RelationalAI API
@@ -17,15 +17,10 @@ Building the python SDK requires:
 
 To install the SDK to your local poetry repository, you can run from the client directory:
 ```shell
-poetry install
-```
-
-## Getting the SDK
-
-To import the SDK, you can simply execute:
-```shell
-poetry run python
->>> import relationalai
+# using poetry
+poetry add relationalai-sdk
+# using pip
+pip install relationalai-sdk
 ```
 
 ### Connecting to local rai-server
@@ -53,7 +48,7 @@ To connect to RAICloud you need to create two connections:
 >>> conn = Connection(mngt_conn=mngt_conn, compute_name="python_sdk_compute", dbname="python_sdk_db")
 >>> conn.create_database(overwrite=True)
 
->> mngt_conn.delete_compute(compute_name="python_sdk_compute")
+>>> mngt_conn.delete_compute(compute_name="python_sdk_compute")
 ```
 
 ## Getting dependencies using Nix:
