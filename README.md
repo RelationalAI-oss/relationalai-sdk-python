@@ -1,6 +1,6 @@
 # RelationalAI Python SDK
 
-[RelationalAI Python SDK](https://github.com/RelationalAI-oss/relationalai-sdk-python)
+[RelationalAI Python SDK](https://pypi.org/project/relationalai-sdk/)
 - API version: 1.1.3
 
 This is a Client SDK for RelationalAI API
